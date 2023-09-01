@@ -41,25 +41,25 @@ export default function Todo() {
     setTodos([...todos, newTask]);
     setNewTodo("");
   };
-  // edit todo
+  // edit todo 
   const handleEditClick = (taskId) => {
     const taskToEdit = todos.find((todo) => todo.id === taskId);
     setEditTodo(taskToEdit.todo);
     setTaskId(taskId);
     setIsEditing(true);
   };
-  // Function to handle updating the task
+  // hàm update todo
   const handleUpdateTask = () => {
-    // Find the index of the task being edited in the todos array
+    // tìm vị trí todo cần edit
     const taskIndex = todos.findIndex((todo) => todo.id === taskId);
     if (taskIndex !== -1) {
-      // Create a copy of the todos array
+      // clone arr
       const updatedTodos = [...todos];
-      // Update the task
+      // Update  todo
       updatedTodos[taskIndex].todo = editTodo;
-      // Update the todos state
+      // Update lại todos cho state
       setTodos(updatedTodos);
-      // Reset the edit task state and hide the edit form
+      //
       setEditTodo("");
       setIsEditing(false);
     }
@@ -72,7 +72,7 @@ export default function Todo() {
     <div>
       <TodoHeader
         valueTodo={handleInputChange}
-        addTodo={handleAddTodo}
+        handleAddTodo={handleAddTodo}
         newTodo={newTodo}
         editTodo={editTodo}
         isEditing={isEditing}
