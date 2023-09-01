@@ -1,12 +1,15 @@
-
-import './App.css';
-
-import Todo from './pages/Todo';
+import "./App.css";
+import { useState } from "react";
+import Todo from "./pages/Todo";
 
 function App() {
+  const [show ,setShow] = useState(true)
+  const click =()=>{
+    setShow(!show)
+  }
   return (
     <div className="App">
-     <Todo/>
+      <Todo />
     </div>
   );
 }

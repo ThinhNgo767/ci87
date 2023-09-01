@@ -17,9 +17,9 @@ input.check_todo{
     color: white;
     border: none;
     font-size: 0.9rem;
-    transition: all 0.5s;
-
-
+    transition: all 0.3s;
+    border-radius: 3px;
+    cursor: pointer;
 }
 .btn_edit:hover,.btn_delete:hover{
     background-color: transparent;

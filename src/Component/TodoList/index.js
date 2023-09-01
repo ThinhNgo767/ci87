@@ -1,4 +1,5 @@
 import TodoItem from "../TodoItem";
+
 import "./style.css";
 
 const TodoList = ({ data, todoCompleted, todoEdit, todoDelete }) => {
