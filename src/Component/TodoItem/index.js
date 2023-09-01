@@ -1,9 +1,9 @@
 import "./style.css";
 
-const TodoItem = ({ data, checkCompleted }) => {
+const TodoItem = ({ data, todoCompleted, todoEdit, todoDelete }) => {
   const { id, todo, isCompleted } = data;
   const handleChange = () => {
-    checkCompleted(id);
+    todoCompleted(id);
   };
   const done = isCompleted ? "todo_done" : "";
   return (
@@ -20,8 +20,12 @@ const TodoItem = ({ data, checkCompleted }) => {
       </div>
 
       <div>
-        <button className="btn_edit">edit</button>
-        <button className="btn_delete">dele</button>
+        <button className="btn_edit" onClick={() => todoEdit(id)}>
+          edit
+        </button>
+        <button className="btn_delete" onClick={() => todoDelete(id)}>
+          delele
+        </button>
       </div>
     </div>
   );

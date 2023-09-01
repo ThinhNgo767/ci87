@@ -17,17 +17,18 @@
     outline: 2px grey solid;
     border: none;
 }
-.add_todo{
+.add_todo,.edit_todo{
     width: 5rem;
-    height: 2rem;
+    height: 2.1rem;
     background: grey;
     color: white;
     border: none;
     font-size: 1rem;
     transition: all 0.5s;
+    margin-left: 0.25rem;
     
 }
-.add_todo:hover{
+.add_todo:hover,.edit_todo:hover{
     background-color: transparent;
     color: black;
     border: 1px solid;
