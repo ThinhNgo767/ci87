@@ -2,7 +2,7 @@ import "./style.css";
 
 const TodoHeader = ({
   valueTodo,
-  addTodo,
+  handleAddTodo,
   newTodo,
   editTodo,
   setEditTodo,
@@ -14,25 +14,21 @@ const TodoHeader = ({
     setEditTodo(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleUpdateTask();
-  };
 
   return (
     <div className="todo_header">
       {isEditing ? (
-        <form onSubmit={handleSubmit}>
+        <div>
           <input
             type="text"
             className="input_task"
             value={editTodo}
             onChange={handleChange}
           />
-          <button type="submit" className="edit_todo">
+          <button type="submit" className="edit_todo" onClick={handleUpdateTask}>
             Update
           </button>
-        </form>
+        </div>
       ) : (
         <div>
           <input
@@ -42,7 +38,7 @@ const TodoHeader = ({
             onChange={valueTodo}
             value={newTodo}
           ></input>
-          <button type="button" className="add_todo" onClick={addTodo}>
+          <button type="button" className="add_todo" onClick={handleAddTodo}>
             Add todo
           </button>
         </div>
