@@ -1,0 +1,31 @@
+.todo{
+    text-align: start;
+    display: flex;
+    justify-content: space-between;
+}
+.todo span {
+    font-size: 1.3rem;
+    margin-left: 1rem;
+}
+input.check_todo{
+    width: 1rem;
+    height: 1rem;
+}
+.btn_edit,.btn_delete{
+    margin: 0.25rem;
+    background-color: grey;
+    color: white;
+    border: none;
+    font-size: 0.9rem;
+    transition: all 0.5s;
+}
+.btn_edit:hover,.btn_delete:hover{
+    background-color: transparent;
+    color: black;
+    outline: 1px solid blue;
+}
+.todo_done{
+    text-decoration: line-through;
+    font-style: italic;
+    color: grey
+}
