@@ -18,11 +18,14 @@ input.check_todo{
     border: none;
     font-size: 0.9rem;
     transition: all 0.5s;
+
+
 }
 .btn_edit:hover,.btn_delete:hover{
     background-color: transparent;
     color: black;
-    outline: 1px solid blue;
+    outline: 1px solid black;
+    
 }
 .todo_done{
     text-decoration: line-through;
