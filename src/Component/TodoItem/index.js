@@ -21,7 +21,7 @@ const TodoItem = ({ data, checkCompleted }) => {
 
       <div>
         <button className="btn_edit">edit</button>
-        <button className="btn_delete">delete</button>
+        <button className="btn_delete">dele</button>
       </div>
     </div>
   );
