@@ -1,11 +1,12 @@
 import "./style.css";
 
-const TodoItem = ({ data, todoCompleted, todoEdit, todoDelete }) => {
+const TodoItem = ({ data, todoCompleted, todoEdit, todoDelete}) => {
   const { id, todo, isCompleted } = data;
   const handleChange = () => {
     todoCompleted(id);
   };
   const done = isCompleted ? "todo_done" : "";
+
   return (
     <div className="todo">
       <div>
@@ -20,7 +21,7 @@ const TodoItem = ({ data, todoCompleted, todoEdit, todoDelete }) => {
       </div>
 
       <div>
-        <button className="btn_edit" onClick={() => todoEdit(id)}>
+        <button className="btn_edit" onClick={()=>todoEdit(id)}>
           edit
         </button>
         <button className="btn_delete" onClick={() => todoDelete(id)}>

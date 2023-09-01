@@ -24,12 +24,17 @@
     color: white;
     border: none;
     font-size: 1rem;
-    transition: all 0.5s;
+    transition: all 0.3s;
     margin-left: 0.25rem;
-    
+    cursor: pointer;
+   border-radius: 3px; 
 }
 .add_todo:hover,.edit_todo:hover{
     background-color: transparent;
     color: black;
     border: 1px solid;
+}
+.add_todo:active,.edit_todo:active{
+    transform: translateY(3px);
+    
 }
