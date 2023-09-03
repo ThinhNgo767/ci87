@@ -1,7 +1,8 @@
 import "./style.css";
 
-const TodoItem = ({ data, todoCompleted, todoEdit, todoDelete}) => {
-  const { id, todo, isCompleted } = data;
+const TodoItem = ({ dataTodos, todoCompleted, handleEditClick, handleDeleteClick}) => {
+  const { id, todo, isCompleted } = dataTodos;
+ 
   const handleChange = () => {
     todoCompleted(id);
   };
@@ -21,10 +22,10 @@ const TodoItem = ({ data, todoCompleted, todoEdit, todoDelete}) => {
       </div>
 
       <div>
-        <button className="btn_edit" onClick={()=>todoEdit(id)}>
+        <button className="btn_edit" onClick={()=>handleEditClick(id)}>
           edit
         </button>
-        <button className="btn_delete" onClick={() => todoDelete(id)}>
+        <button className="btn_delete" onClick={() => handleDeleteClick(id)}>
           delele
         </button>
       </div>

@@ -2,16 +2,16 @@ import TodoItem from "../TodoItem";
 
 import "./style.css";
 
-const TodoList = ({ data, todoCompleted, todoEdit, todoDelete }) => {
+const TodoList = ({ dataTodos, todoCompleted, handleEditClick, handleDeleteClick }) => {
   return (
     <div className="todo_list">
-      {data.map((todo) => (
+      {dataTodos.map((todo) => (
         <TodoItem
           key={todo.id}
-          data={todo}
+          dataTodos={todo}
           todoCompleted={todoCompleted}
-          todoEdit={todoEdit}
-          todoDelete={todoDelete}
+          handleEditClick={handleEditClick}
+          handleDeleteClick={handleDeleteClick}
         />
       ))}
     </div>

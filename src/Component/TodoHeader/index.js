@@ -1,7 +1,7 @@
 import "./style.css";
 
 const TodoHeader = ({
-  valueTodo,
+  handleInputChange,
   handleAddTodo,
   newTodo,
   editTodo,
@@ -35,7 +35,7 @@ const TodoHeader = ({
             type="text"
             className="input_task"
             placeholder="Enter your task here ..."
-            onChange={valueTodo}
+            onChange={handleInputChange}
             value={newTodo}
           ></input>
           <button type="button" className="add_todo" onClick={handleAddTodo}>

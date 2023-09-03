@@ -1,16 +1,16 @@
 import "./style.css";
 
-const TodoFooter = ({ data }) => {
+const TodoFooter = ({ dataTodos }) => {
   const countTodoLeft = () => {
-    return data.filter((todo) => !todo.isCompleted).length;
+    return dataTodos.filter((todo) => !todo.isCompleted).length;
   };
-  const counts = countTodoLeft();
+  const count = countTodoLeft();
 
   return (
     <>
-      {counts > 0 ? (
+      {count > 0 ? (
         <div className="todo_footer">
-          <p>{counts} tasks left! </p>
+          <p>{count} tasks left! </p>
           <p>MindX todolist</p>
         </div>
       ) : (
