@@ -66,13 +66,12 @@ export default function Todo() {
   };
   const handleDeleteClick = (taskId) => {
     const updatedTodos = todos.filter(todo => todo.id !== taskId);
-    
     setTodos(updatedTodos);
   };
   return (
     <div>
       <TodoHeader
-        valueTodo={handleInputChange}
+        handleInputChange={handleInputChange}
         handleAddTodo={handleAddTodo}
         newTodo={newTodo}
         editTodo={editTodo}
@@ -82,13 +81,13 @@ export default function Todo() {
       
       />
       <TodoList
-        data={todos}
+        dataTodos={todos}
         todoCompleted={handleCheckboxChange}
-        todoEdit={handleEditClick}
-        todoDelete={handleDeleteClick}
+        handleEditClick={handleEditClick}
+        handleDeleteClick={handleDeleteClick}
        
       />
-      <TodoFooter data={todos} />
+      <TodoFooter dataTodos={todos} />
     </div>
   );
 }
