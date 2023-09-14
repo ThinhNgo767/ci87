@@ -7,7 +7,7 @@ const TodoHeader = ({
   editTodo,
   setEditTodo,
   isEditing,
-  handleUpdateTask,
+  handleUpdateTodo,
 }) => {
   
   const handleChange = (e) => {
@@ -25,7 +25,7 @@ const TodoHeader = ({
             value={editTodo}
             onChange={handleChange}
           />
-          <button type="submit" className="edit_todo" onClick={handleUpdateTask}>
+          <button type="submit" className="edit_todo" onClick={handleUpdateTodo}>
             Update
           </button>
         </div>

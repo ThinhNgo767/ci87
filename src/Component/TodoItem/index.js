@@ -1,15 +1,20 @@
 import "./style.css";
 
-const TodoItem = ({ dataTodos, todoCompleted, handleEditClick, handleDeleteClick}) => {
+const TodoItem = ({
+  dataTodos,
+  todoCompleted,
+  handleEditTodo,
+  handleDeleteTodo,
+}) => {
   const { id, todo, isCompleted } = dataTodos;
- 
+
   const handleChange = () => {
     todoCompleted(id);
   };
-  const done = isCompleted ? "todo_done" : "";
 
   return (
     <div className="todo">
+
       <div>
         <input
           type="checkbox"
@@ -18,16 +23,23 @@ const TodoItem = ({ dataTodos, todoCompleted, handleEditClick, handleDeleteClick
           checked={isCompleted}
           onChange={handleChange}
         />
-        <span className={done}>{todo}</span>
+        <span className={isCompleted ? "competed" :""}>
+          {todo}
+        </span>
       </div>
 
-      <div>
-        <button className="btn_edit" onClick={()=>handleEditClick(id)}>
-          edit
-        </button>
-        <button className="btn_delete" onClick={() => handleDeleteClick(id)}>
-          delele
-        </button>
+      <div className="action_todo">
+          <i
+            className="fa-solid fa-pen-to-square"
+            title="edit"
+            onClick={() => handleEditTodo(id)}
+          ></i>{" "}
+          <i
+            className="fa-solid fa-trash-can"
+            title="delete"
+            onClick={() => handleDeleteTodo(id)}
+          ></i>
+        
       </div>
     </div>
   );

@@ -27,7 +27,7 @@
     transition: all 0.3s;
     margin-left: 0.25rem;
     cursor: pointer;
-   border-radius: 3px; 
+   
 }
 .add_todo:hover,.edit_todo:hover{
     background-color: transparent;

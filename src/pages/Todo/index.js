@@ -4,13 +4,13 @@ import TodoList from "../../Component/TodoList";
 import { useState } from "react";
 import { TODOS } from "../../data/todos";
 
-export default function Todo() {
+const Todo =() =>{
   // Khai báo state
   const [todos, setTodos] = useState(TODOS);
   const [newTodo, setNewTodo] = useState("");
   const [editTodo, setEditTodo] = useState("");
   const [isEditing, setIsEditing] = useState(false);
-  const [taskId, setTaskId] = useState(null);
+  const [todoId, setTodoId] = useState(null);
 
   // hàm xử lí khi input checkbox có sự thay đổi
   const handleCheckboxChange = (id) => {
@@ -22,36 +22,36 @@ export default function Todo() {
     });
     setTodos(updatedTodos);
   };
-  //hàm event value input
+  //event value input
   const handleInputChange = (e) => {
     setNewTodo(e.target.value);
   };
-  // thêm newtodo
+  // newtodo
   const handleAddTodo = () => {
     if (newTodo.trim() === "") {
       return;
     }
 
-    const newTask = {
+    const todo = {
       id: todos.length + 1,
       todo: newTodo,
       isCompleted: false,
     };
 
-    setTodos([...todos, newTask]);
+    setTodos([...todos, todo]);
     setNewTodo("");
   };
   // edit todo 
-  const handleEditClick = (taskId) => {
-    const taskToEdit = todos.find((todo) => todo.id === taskId);
+  const handleEditTodo = (todoId) => {
+    const taskToEdit = todos.find((todo) => todo.id === todoId);
     setEditTodo(taskToEdit.todo);
-    setTaskId(taskId);
+    setTodoId(todoId);
     setIsEditing(true);
   };
-  // hàm update todo
-  const handleUpdateTask = () => {
+  // update todo
+  const handleUpdateTodo = () => {
     // tìm vị trí todo cần edit
-    const taskIndex = todos.findIndex((todo) => todo.id === taskId);
+    const taskIndex = todos.findIndex((todo) => todo.id === todoId);
     if (taskIndex !== -1) {
       // clone arr
       const updatedTodos = [...todos];
@@ -64,8 +64,8 @@ export default function Todo() {
       setIsEditing(false);
     }
   };
-  const handleDeleteClick = (taskId) => {
-    const updatedTodos = todos.filter(todo => todo.id !== taskId);
+  const handleDeleteTodo = (todoId) => {
+    const updatedTodos = todos.filter(todo => todo.id !== todoId);
     setTodos(updatedTodos);
   };
   return (
@@ -77,17 +77,18 @@ export default function Todo() {
         editTodo={editTodo}
         isEditing={isEditing}
         setEditTodo={setEditTodo}
-        handleUpdateTask={handleUpdateTask}
+        handleUpdateTodo={handleUpdateTodo}
       
       />
       <TodoList
         dataTodos={todos}
         todoCompleted={handleCheckboxChange}
-        handleEditClick={handleEditClick}
-        handleDeleteClick={handleDeleteClick}
+        handleEditTodo={handleEditTodo}
+        handleDeleteTodo={handleDeleteTodo}
        
       />
       <TodoFooter dataTodos={todos} />
     </div>
   );
 }
+export default Todo
