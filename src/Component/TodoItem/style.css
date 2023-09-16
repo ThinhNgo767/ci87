@@ -1,37 +1,29 @@
-.todo{
+.todo__task{
     text-align: start;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin: 0.8rem 0;
     padding: 0.5rem;
     background-color: #FFFFFF;
     border-radius: 5px;
     box-shadow: 2px 2px 2px #999999;
 }
-.todo label {
+.todo__task label {
     font-size: 1.3rem;
     margin-left: 1rem;
+    color: #444B59;
     
 }
-.action_todo{
+.todo__task .task__item{
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
 }
 i.fa-solid{
     font-size: 1.2rem;
     color: grey;
     cursor: pointer;
 }
-i.edit_todo--hover:hover,i.delete_todo--hover:hover{
+i.edit_todo--hover:hover{
     color: #087EA4;
-}
-i.fa-trash-can{
-    margin-right: 0.5rem;
-}
-input.check_todo{
-    width: 1rem;
-    height: 1rem;
 }
 .competed{
     text-decoration: line-through;
@@ -48,4 +40,25 @@ input.edit_todo{
 button.check_todo{
     background-color: transparent;
     border: none;
+}
+.estPomodoros {
+    margin-right: 1rem;
+}
+button.button__edit_taks{
+    background-color: transparent;
+}
+.edit__taks-button{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+.edit__taks-button button {
+    width: 4rem;
+    height: 1.6rem;
+    font-size: 0.9rem;
+}
+button.delete_todo{
+    background-color: #f0f1f4;
+    color: #23272F;
+    outline: 1px solid #E6E8ED;
 }
