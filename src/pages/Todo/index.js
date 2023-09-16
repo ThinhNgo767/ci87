@@ -8,9 +8,10 @@ const Todo = () => {
   // Khai báo state
   const [todos, setTodos] = useState(TODOS);
   const [newTodo, setNewTodo] = useState("");
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState("All todo");
   const [newTask, setNewTask] = useState(false);
-  const [estPomodoros, setEstPomodoros] = useState(1);
+  const [pomodoros, setPomodoros] = useState(1);
+  
   // hàm xử lí khi input checkbox có sự thay đổi
   const handleCheckboxChange = (id) => {
     const updatedTodos = todos.map((todo) => {
@@ -38,13 +39,13 @@ const Todo = () => {
       id: todos.length + 1,
       todo: newTodo,
       isCompleted: false,
-      estPomodoros: estPomodoros,
+      estPomodoros: pomodoros,
     };
 
     setTodos([...todos, todo]);
     setNewTodo("");
     setNewTask(false);
-    setEstPomodoros(1);
+    setPomodoros(1);
   };
   // delete todo
   const handleDeleteTodo = (todoId) => {
@@ -70,8 +71,8 @@ const Todo = () => {
         newTodo={newTodo}
         newTask={newTask}
         setNewTask={setNewTask}
-        estPomodoros={estPomodoros}
-        setEstPomodoros={setEstPomodoros}
+        pomodoros={pomodoros}
+        setPomodoros={setPomodoros}
       />
       <TodoList
         dataTodos={todos}
@@ -79,6 +80,8 @@ const Todo = () => {
         handleDeleteTodo={handleDeleteTodo}
         filterTodos={filterTodos}
         setFilter={setFilter}
+        setNewPomodoros={setPomodoros}
+
       />
       <TodoFooter dataTodos={todos} filter={filter} />
     </div>
