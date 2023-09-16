@@ -1,12 +1,13 @@
 .App {
-  text-align: center;
-  background-color: white;
+  background-color: #F3F4F6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: 'Times New Roman', Times, serif;
-  
 }
 
+.todo__page{
+  min-width: 20rem;
+}

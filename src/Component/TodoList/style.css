@@ -3,6 +3,9 @@
 }
 .filer_todo{
     max-width: fit-content;
-    min-height: 1.5rem;
+    min-height: 2rem;
     outline: none;
+    font-size: 0.9rem;
+    padding-left: 0.3rem;
+    border-radius: 3px;
 }

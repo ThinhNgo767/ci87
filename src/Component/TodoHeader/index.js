@@ -4,42 +4,69 @@ const TodoHeader = ({
   handleInputChange,
   handleAddTodo,
   newTodo,
-  editTodo,
-  setEditTodo,
-  isEditing,
-  handleUpdateTodo,
+  newTask,
+  setNewTask,
+  estPomodoros,
+  setEstPomodoros,
 }) => {
-  
-  const handleChange = (e) => {
-    setEditTodo(e.target.value);
+  const increase = () => {
+    if (estPomodoros === 10) {
+      return;
+    }
+    setEstPomodoros(estPomodoros + 1);
   };
-
-
+  const decrease = () => {
+    if (estPomodoros === 1) {
+      return;
+    }
+    setEstPomodoros(estPomodoros - 1);
+  };
   return (
     <div className="todo_header">
-      {isEditing ? (
-        <div>
-          <input
-            type="text"
-            className="input_task"
-            value={editTodo}
-            onChange={handleChange}
-          />
-          <button type="submit" className="edit_todo" onClick={handleUpdateTodo}>
-            Update
-          </button>
-        </div>
-      ) : (
-        <div>
+      {newTask ? (
+        <div className="new__taks">
           <input
             type="text"
             className="input_task"
             placeholder="Enter your task here ..."
-            onChange={handleInputChange}
             value={newTodo}
+            onChange={handleInputChange}
+      autoFocus
           ></input>
-          <button type="button" className="add_todo" onClick={handleAddTodo}>
-            Add todo
+          <p>Est Pomodoros</p>
+          <div className="header__pomodoros">
+            <input
+              type="number"
+              className="input__estPomodoros"
+              title="estPomodoros"
+              value={estPomodoros}
+              readOnly
+            />
+            <button onClick={increase}><i className="fa-solid fa-caret-up color--while"></i></button>
+            <button onClick={decrease}><i className="fa-solid fa-caret-down color--while"></i></button>
+          </div>
+          <div className="add__taks-button">
+          <button
+              type="button"
+              className="cancel_todo"
+              onClick={() => setNewTask(false)}
+            >
+              Cancel
+            </button>
+            <button type="button" className="save_todo" onClick={handleAddTodo}>
+              Save
+            </button>
+            
+          </div>
+        </div>
+      ) : (
+        <div>
+          <button
+            type="button"
+            className="add_todo"
+            onClick={() => setNewTask(true)}
+          > <i className="fa-solid fa-circle-plus color--while style--margin"></i> 
+            Add Task
           </button>
         </div>
       )}
