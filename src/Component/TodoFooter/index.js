@@ -1,25 +1,22 @@
 import "./style.css";
 
-const TodoFooter = ({ dataTodos }) => {
+const TodoFooter = ({ dataTodos, filter }) => {
   const countTodoLeft = () => {
-    return dataTodos.filter((todo) => !todo.isCompleted).length;
+    if (filter === "Active todo") {
+      return dataTodos.filter((todo) => !todo.isCompleted).length;
+    } else if (filter === "Completed todo") {
+      return dataTodos.filter((todo) => todo.isCompleted).length;
+    } else {
+      return dataTodos.filter((todo) => todo.todo).length;
+    }
   };
   const count = countTodoLeft();
 
   return (
-    <>
-      {count > 0 ? (
-        <div className="todo_footer">
-          <p>{count} tasks left! </p>
-          <p>MindX todolist</p>
-        </div>
-      ) : (
-        <div className="todo_footer">
-          <p>Competed todo! </p>
-          <p>MindX todolist</p>
-        </div>
-      )}
-    </>
+    <div className="todo_footer">
+      <p>{filter} <strong>{count}</strong> tasks </p>
+      <p>MindX todolist</p>
+    </div>
   );
 };
 

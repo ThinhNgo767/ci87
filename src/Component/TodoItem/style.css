@@ -3,9 +3,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0.25rem 0;
+    margin: 0.8rem 0;
+    padding: 0.5rem;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #999999;
 }
-.todo span {
+.todo label {
     font-size: 1.3rem;
     margin-left: 1rem;
     
@@ -19,8 +23,8 @@ i.fa-solid{
     color: grey;
     cursor: pointer;
 }
-i.fa-solid:hover{
-    color: black;
+i.edit_todo--hover:hover,i.delete_todo--hover:hover{
+    color: #087EA4;
 }
 i.fa-trash-can{
     margin-right: 0.5rem;
@@ -33,4 +37,15 @@ input.check_todo{
     text-decoration: line-through;
     font-style: italic;
     color: grey
+}
+input.edit_todo{
+    font-size: 1rem;
+    padding-top: 0.25rem;
+    padding-left: 0.25rem;
+    width: fit-content;
+    margin-left: 1rem;
+}
+button.check_todo{
+    background-color: transparent;
+    border: none;
 }
