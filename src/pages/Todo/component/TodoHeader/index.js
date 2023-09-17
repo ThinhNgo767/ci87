@@ -1,3 +1,7 @@
+import { useContext } from "react";
+
+import ThemeContext from "../../../../contexts/ThemeContext";
+
 import "./style.css";
 
 const TodoHeader = ({
@@ -9,6 +13,11 @@ const TodoHeader = ({
   pomodoros,
   setPomodoros,
 }) => {
+  const {theme} = useContext(ThemeContext)
+  const classNewTask = theme === "light" ?"new__taks new__taks-light" :"new__taks new__taks-dark"
+  const classInputTaks =theme === "light" ?"input_task input_task-light" :"input_task input_task-dark"
+  const classInputPomodoros =theme === "light" ?"input__pomodoros input_task-light" :"input__pomodoros input_task-dark"
+
   const increase = () => {
     if (pomodoros === 10) {
       return;
@@ -22,12 +31,12 @@ const TodoHeader = ({
     setPomodoros(pomodoros - 1);
   };
   return (
-    <div className="todo_header">
+    <div className='add__taks'>
       {newTask ? (
-        <div className="new__taks">
+        <div className={classNewTask}>
           <input
             type="text"
-            className="input_task"
+            className={classInputTaks}
             placeholder="Enter your task here ..."
             value={newTodo}
             onChange={handleInputChange}
@@ -37,7 +46,7 @@ const TodoHeader = ({
           <div className="header__pomodoros">
             <input
               type="number"
-              className="input__estPomodoros"
+              className={classInputPomodoros}
               title="estPomodoros"
               value={pomodoros}
               readOnly
@@ -63,16 +72,16 @@ const TodoHeader = ({
           </div>
         </div>
       ) : (
-        <div>
+        <div className="header_theme_btn">
           <button
             type="button"
             className="add_todo"
             onClick={() => setNewTask(true)}
           >
-            {" "}
             <i className="fa-solid fa-circle-plus color--while style--margin"></i>
             Add Task
           </button>
+          
         </div>
       )}
     </div>

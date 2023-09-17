@@ -1,5 +1,9 @@
+
 import TodoItem from "../TodoItem";
 import "./style.css";
+import ThemeContext from "../../../../contexts/ThemeContext";
+
+import { useContext } from "react";
 
 const TodoList = ({
   dataTodos,
@@ -7,13 +11,15 @@ const TodoList = ({
   handleDeleteTodo,
   filterTodos,
   setFilter,
-  setNewPomodoros,
 }) => {
+const {theme} = useContext(ThemeContext)
+const classFilter = theme === "light" ? "filer_todo filter-light" :"filer_todo filter-dark"
+
   return (
     <div className="todo_list">
       <form style={{ display: "flex", marginBottom: "1rem" }}>
         <select
-          className="filer_todo"
+          className={classFilter}
           name="filer_todo"
           title="filter"
           onChange={(e) => setFilter(e.target.value)}
@@ -30,7 +36,6 @@ const TodoList = ({
           dataTodos={todo}
           todoCompleted={todoCompleted}
           handleDeleteTodo={handleDeleteTodo}
-          setNewPomodoros={setNewPomodoros}
         />
       ))}
     </div>

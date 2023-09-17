@@ -1,0 +1,31 @@
+.home{
+    text-align: center;
+}
+.home .circle-style {
+    font-size: 6rem;
+    color: #087EA4;
+
+}
+.home .home_title{
+    font-size: 4rem;
+}
+.home .home_intro{
+    width: 55vw;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+.get_todo{
+    width: 8rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+}
+.home_title-light{
+    color: #23272F;
+}
+.home_title-dark{
+    color: #F6F7F9;
+}
+
+.home_intro-light{color: #23272F;}
+.home_intro-dark{color: #F6F7F9;}

@@ -1,8 +1,11 @@
-import TodoFooter from "../../Component/TodoFooter";
-import TodoHeader from "../../Component/TodoHeader";
-import TodoList from "../../Component/TodoList";
-import { useState } from "react";
+import "./style.css"
+import TodoFooter from "./component/TodoFooter";
+import TodoHeader from "./component/TodoHeader";
+import TodoList from "./component/TodoList";
 import { TODOS } from "../../data/todos";
+
+import { useState } from "react";
+
 
 const Todo = () => {
   // Khai báo state
@@ -80,8 +83,6 @@ const Todo = () => {
         handleDeleteTodo={handleDeleteTodo}
         filterTodos={filterTodos}
         setFilter={setFilter}
-        setNewPomodoros={setPomodoros}
-
       />
       <TodoFooter dataTodos={todos} filter={filter} />
     </div>
