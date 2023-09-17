@@ -9,3 +9,13 @@
     padding-left: 0.3rem;
     border-radius: 3px;
 }
+.filter-light{
+    background: #ffffff;
+    color: #343A46;
+}
+
+.filter-dark{
+    background: #343A46;
+    color: #ffffff;
+    outline: none;
+}

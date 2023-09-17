@@ -1,16 +1,31 @@
 import "./style.css";
+import ThemeContext from "../../../../contexts/ThemeContext";
+
 import { useState } from "react";
-const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo ,setNewPomodoros}) => {
+import { useContext } from "react";
+
+const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
   const { id, todo, isCompleted, estPomodoros } = dataTodos;
   const [isEditing, setIsEditing] = useState(false);
   const [todoText, setTodoText] = useState(todo);
   const [pomodoros, setPomodoros] = useState(estPomodoros);
+  const { theme } = useContext(ThemeContext);
+
+  const styleCompleted = isCompleted
+    ? { color: "#087EA4" }
+    : theme === "light"
+    ? { color: "grey" }
+    : { color: "#F6F7F9" };
+  const classNameTaks =
+    theme === "light" ? "todo__task" : "todo__task style--dark";
+    const classInputTaks =theme === "light" ?"input_task input_task-light" :"input_task input_task-dark"
+    const classInputPomodoros =theme === "light" ?"input__pomodoros input_task-light" :"input__pomodoros input_task-dark"
 
   const handleUpdateTodo = () => {
     dataTodos.todo = todoText;
     setTodoText(dataTodos.todo);
     setIsEditing(false);
-    dataTodos.estPomodoros = pomodoros
+    dataTodos.estPomodoros = pomodoros;
   };
 
   const increase = () => {
@@ -26,14 +41,13 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo ,setNewPomodoros}
     setPomodoros(pomodoros - 1);
   };
 
-  const styleCompleted = { color: "#087EA4" };
   return (
-    <div className="todo__task">
+    <div className={classNameTaks}>
       {isEditing ? (
         <div className="edit__taks">
           <input
             type="text"
-            className="input_task"
+            className={classInputTaks}
             placeholder="Enter your task here ..."
             value={todoText}
             onChange={(e) => setTodoText(e.target.value)}
@@ -43,7 +57,7 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo ,setNewPomodoros}
           <div className="header__pomodoros">
             <input
               type="number"
-              className="input__estPomodoros"
+              className={classInputPomodoros}
               title="estPomodoros"
               value={pomodoros}
               readOnly
@@ -85,25 +99,24 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo ,setNewPomodoros}
       ) : (
         <div className="task__item">
           <div>
-          <button className="check_todo" onClick={() => todoCompleted(id)}>
-            <i
-              className="fa-solid fa-circle-check"
-              style={isCompleted ? styleCompleted : { color: "grey" }}
-            ></i>
-          </button>
-          <label className={isCompleted ? "competed" : ""}>{todoText}</label>
+            <button className="check_todo" onClick={() => todoCompleted(id)}>
+              <i
+                className="fa-solid fa-circle-check"
+                style={styleCompleted}
+              ></i>
+            </button>
+            <label className={isCompleted ? "competed" : ""}>{todoText}</label>
           </div>
-         <div>
-         <label className="estPomodoros">{pomodoros}</label>
-          <button
-            className="button__edit_taks"
-            title="edit"
-            onClick={() => setIsEditing(!isEditing)}
-          >
-            <i className="fa-solid fa-pen-to-square edit_todo--hover"></i>
-          </button>
-         </div>
-          
+          <div>
+            <label className="estPomodoros">{pomodoros}</label>
+            <button
+              className="button__edit_taks"
+              title="edit"
+              onClick={() => setIsEditing(!isEditing)}
+            >
+              <i className="fa-solid fa-pen-to-square edit_todo--hover"></i>
+            </button>
+          </div>
         </div>
       )}
     </div>

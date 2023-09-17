@@ -2,7 +2,7 @@
     text-align: start;
     margin: 0.8rem 0;
     padding: 0.5rem;
-    background-color: #FFFFFF;
+    background-color: #F3F4F6;
     border-radius: 5px;
     box-shadow: 2px 2px 2px #999999;
 }
@@ -61,4 +61,12 @@ button.delete_todo{
     background-color: #f0f1f4;
     color: #23272F;
     outline: 1px solid #E6E8ED;
+}
+.style--dark{
+    background-color: #444B59;
+    box-shadow: 0px 1px 3px #f0f1f4;
+    
+}
+.style--dark label, .style--dark i.fa-solid{
+    color: #EBECF0;
 }

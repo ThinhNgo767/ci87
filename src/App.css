@@ -1,13 +1,14 @@
 .App {
-  background-color: #F3F4F6;
+  background-color: #FFFFFF;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 5rem;
   font-family: 'Times New Roman', Times, serif;
 }
 
-.todo__page{
-  min-width: 20rem;
+.background--dark{
+  background-color: #23272F;
 }

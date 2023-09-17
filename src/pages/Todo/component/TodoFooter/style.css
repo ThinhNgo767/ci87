@@ -1,0 +1,19 @@
+.todo_footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+}
+p.todo_footer-text{
+    font-size: 1.2rem;
+    color: #23272F;
+}
+.footer-light p {
+    color: #23272F;
+    
+}
+
+.footer_dark p {
+    color: #F3F4F6;
+    
+}
+
