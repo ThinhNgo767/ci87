@@ -20,13 +20,10 @@ const dataUser =
 
 const Profile = () => {
   const {theme} = useContext(ThemeContext)
-  const classTopBackground = theme === "light" ? "top-background top-background-light" :"top-background top-background-dark"
-  const classBottomBackground = theme === "light" ? "bottom-background bottom-background-light" :"bottom-background bottom-background-dark"
-  return (
-    <div className="profile">
-      <div className={classTopBackground}></div>
-      <div className={classBottomBackground}></div>
+  const classProfile = theme === "light" ? "profile profile-background-light" :"profile profile-background-dark"
 
+  return (
+    <div className={classProfile}>
       <Information data={dataUser} />
     </div>
   );

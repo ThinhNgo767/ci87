@@ -22,9 +22,11 @@
 
 h1,h3 {
     text-transform: uppercase;
+    letter-spacing: 2px
 }
 .information p{
     margin: 1.5rem 0;
+    letter-spacing: 1px;
     
 }
 i.user_icon--style{

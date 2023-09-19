@@ -4,16 +4,14 @@
   justify-content: flex-end;
   gap: 10rem;
   align-items: center;
-  
 }
-.header_bg-light{
+.header_bg-light {
   background-color: #f3f4f6;
 }
 
-.header_bg-dark{
+.header_bg-dark {
   background-color: #374151;
 }
-
 
 .header ul {
   list-style: none;
@@ -27,23 +25,25 @@
   font-size: 1.2rem;
   padding: 0.5rem;
   border-radius: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
 }
 .color-link-light {
   color: #404756;
 }
 
 .color-link-dark {
-    color: #f3f4f6;
-  }
+  color: #f3f4f6;
+}
 
 .active-item-light {
-background-color: #e6f7ff;
+  background-color: #e6f7ff;
   color: #087ea4;
 }
 
 .active-item-dark {
-    background-color: #283542;
-    color: #087ea4;
+  background-color: #283542;
+  color: #087ea4;
 }
 
 button.dark--theme,
