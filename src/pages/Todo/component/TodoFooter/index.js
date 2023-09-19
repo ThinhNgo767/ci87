@@ -9,9 +9,9 @@ const TodoFooter = ({ dataTodos, filter }) => {
   const classTextFooter = theme === "light" ? "todo_footer footer_light":"todo_footer footer_dark"
 
   const countTodoLeft = () => {
-    if (filter === "Active todo") {
+    if (filter === "Active") {
       return dataTodos.filter((todo) => !todo.isCompleted).length;
-    } else if (filter === "Completed todo") {
+    } else if (filter === "Completed") {
       return dataTodos.filter((todo) => todo.isCompleted).length;
     } else {
       return dataTodos.filter((todo) => todo.todo).length;
@@ -22,7 +22,7 @@ const TodoFooter = ({ dataTodos, filter }) => {
   return (
     <div className={classTextFooter}>
       <p className='todo_footer-text'>{filter} <strong>{count}</strong> tasks </p>
-      <p className='todo_footer-text'>MindX todolist</p>
+      <p className='todo_footer-text'>MindX</p>
     </div>
   );
 };

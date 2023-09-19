@@ -1,4 +1,13 @@
 .todo__page{
     min-width: 20rem;
-    padding: 1rem;
+    padding: 3rem 5rem;
+    border-radius: 5px;
+}
+.todo__page-light{
+    background-color: #f3f4f6;
+   
+}
+.todo__page-dark{
+    background-color: #444b59;
+   
 }

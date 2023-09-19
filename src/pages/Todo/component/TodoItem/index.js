@@ -18,8 +18,22 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
     : { color: "#F6F7F9" };
   const classNameTaks =
     theme === "light" ? "todo__task" : "todo__task style--dark";
-    const classInputTaks =theme === "light" ?"input_task input_task-light" :"input_task input_task-dark"
-    const classInputPomodoros =theme === "light" ?"input__pomodoros input_task-light" :"input__pomodoros input_task-dark"
+  const classInputTaks =
+    theme === "light"
+      ? "input_task input_task-light"
+      : "input_task input_task-dark";
+  const classInputPomodoros =
+    theme === "light"
+      ? "input__pomodoros input_task-light"
+      : "input__pomodoros input_task-dark";
+  const classCancelButton =
+    theme === "light"
+      ? "todo-item_cancel--button-light"
+      : "todo-item_cancel--button-dark";
+      const classDeleteButton =
+    theme === "light"
+      ? "todo-item_delete--button-light"
+      : "todo-item_delete--button-dark";
 
   const handleUpdateTodo = () => {
     dataTodos.todo = todoText;
@@ -73,7 +87,7 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
           <div className="edit__taks-button add__taks-button">
             <button
               type="button"
-              className="delete_todo"
+              className={classDeleteButton}
               onClick={() => handleDeleteTodo(id)}
             >
               Delete
@@ -81,7 +95,7 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
             <div>
               <button
                 type="button"
-                className="cancel_todo"
+                className={classCancelButton}
                 onClick={() => setIsEditing(!isEditing)}
               >
                 Cancel

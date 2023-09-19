@@ -17,6 +17,7 @@ const TodoHeader = ({
   const classNewTask = theme === "light" ?"new__taks new__taks-light" :"new__taks new__taks-dark"
   const classInputTaks =theme === "light" ?"input_task input_task-light" :"input_task input_task-dark"
   const classInputPomodoros =theme === "light" ?"input__pomodoros input_task-light" :"input__pomodoros input_task-dark"
+  const classCancelTodo =theme === "light" ?"cancel_todo-light" :"cancel_todo-dark"
 
   const increase = () => {
     if (pomodoros === 10) {
@@ -61,7 +62,7 @@ const TodoHeader = ({
           <div className="add__taks-button">
             <button
               type="button"
-              className="cancel_todo"
+              className={classCancelTodo}
               onClick={() => setNewTask(false)}
             >
               Cancel
