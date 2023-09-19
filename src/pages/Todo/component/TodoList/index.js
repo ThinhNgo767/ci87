@@ -24,9 +24,9 @@ const classFilter = theme === "light" ? "filer_todo filter-light" :"filer_todo f
           title="filter"
           onChange={(e) => setFilter(e.target.value)}
         >
-          <option value="All todo">All todo</option>
-          <option value="Active todo">Active todo</option>
-          <option value="Completed todo">Completed todo</option>
+          <option value="All">All Todo</option>
+          <option value="Active">Active Todo</option>
+          <option value="Completed">Completed Todo</option>
         </select>
       </form>
 

@@ -3,8 +3,9 @@ import TodoFooter from "./component/TodoFooter";
 import TodoHeader from "./component/TodoHeader";
 import TodoList from "./component/TodoList";
 import { TODOS } from "../../data/todos";
+import ThemeContext from "../../contexts/ThemeContext";
 
-import { useState } from "react";
+import { useState , useContext} from "react";
 
 
 const Todo = () => {
@@ -15,6 +16,7 @@ const Todo = () => {
   const [newTask, setNewTask] = useState(false);
   const [pomodoros, setPomodoros] = useState(1);
   
+  const {theme} = useContext(ThemeContext)
   // hàm xử lí khi input checkbox có sự thay đổi
   const handleCheckboxChange = (id) => {
     const updatedTodos = todos.map((todo) => {
@@ -57,17 +59,19 @@ const Todo = () => {
   };
   // filter todo
   const filterTodos = () => {
-    if (filter === "Active todo") {
+    if (filter === "Active") {
       return todos.filter((todo) => !todo.isCompleted);
-    } else if (filter === "Completed todo") {
+    } else if (filter === "Completed") {
       return todos.filter((todo) => todo.isCompleted);
     } else {
       return todos.filter((todo) => todo.todo);
     }
   };
 
+const classTodoPage = theme === "light" ?"todo__page todo__page-light":"todo__page todo__page-dark"
+
   return (
-    <div className="todo__page">
+    <div className={classTodoPage}>
       <TodoHeader
         handleInputChange={handleInputChange}
         handleAddTodo={handleAddTodo}

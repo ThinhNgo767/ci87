@@ -8,6 +8,9 @@
 }
 .home .home_title{
     font-size: 4rem;
+    width: 30vw;
+    margin: auto;
+    padding: 2rem 0;
 }
 .home .home_intro{
     width: 55vw;
@@ -15,7 +18,7 @@
     margin-bottom: 2rem;
 }
 .get_todo{
-    width: 8rem;
+    width: 9rem;
     height: 2.5rem;
     font-size: 1.2rem;
     border-radius: 8px;

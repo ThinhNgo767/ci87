@@ -75,11 +75,20 @@ button {
   margin: 0.5rem;
   border-radius: 5px;
 }
-.add__taks-button button.cancel_todo {
+.add__taks-button .cancel_todo-light {
   background-color: #f8f9fa;
   color: #23272f;
-  outline: 1px solid #e6e8ed;
+  outline: 1px solid #e2e3e9;
 }
+
+.add__taks-button .cancel_todo-dark {
+  background-color: #23272f;
+  color: #f6f7f9;
+  outline: 1px solid #404756;
+}
+
+
+
 
 button:active {
   transform: translateY(3px);
@@ -91,6 +100,7 @@ button:active {
   gap: 1rem;
   padding: 0.5rem;
   border-radius: 5px;
+  outline: 1px solid #c0c0c0;
   
 }
 .header_theme_btn {
@@ -111,7 +121,7 @@ i.style--margin {
 
 .new__taks-dark {
   background-color: #444b59;
-  outline: none;
+  
 }
 
 .new__taks-light p {
