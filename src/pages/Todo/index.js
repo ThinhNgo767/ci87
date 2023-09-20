@@ -12,11 +12,13 @@ const Todo = () => {
   // Khai báo state
   const [todos, setTodos] = useState(TODOS);
   const [newTodo, setNewTodo] = useState("");
-  const [filter, setFilter] = useState("All todo");
+  const [filter, setFilter] = useState("All");
   const [newTask, setNewTask] = useState(false);
   const [pomodoros, setPomodoros] = useState(1);
   
   const {theme} = useContext(ThemeContext)
+
+  const classTodoPage = theme === "light" ?"todo__page todo__page-light":"todo__page todo__page-dark"
   // hàm xử lí khi input checkbox có sự thay đổi
   const handleCheckboxChange = (id) => {
     const updatedTodos = todos.map((todo) => {
@@ -67,8 +69,6 @@ const Todo = () => {
       return todos.filter((todo) => todo.todo);
     }
   };
-
-const classTodoPage = theme === "light" ?"todo__page todo__page-light":"todo__page todo__page-dark"
 
   return (
     <div className={classTodoPage}>

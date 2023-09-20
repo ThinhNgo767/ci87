@@ -11,7 +11,7 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [theme, setTheme] = useState("light");
-  const appClassName = theme === "light" ? `App` : `App background--dark`;
+  const appClassName = theme === "light" ? `App App_background--light` : `App App_background--dark`;
   return (
     <div className={appClassName}>
       <ThemeContext.Provider value={{ theme: theme, setTheme: setTheme }}>

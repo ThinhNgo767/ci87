@@ -1,6 +1,7 @@
 .todo_footer{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0 0.5rem;
 }
 p.todo_footer-text{
@@ -15,5 +16,12 @@ p.todo_footer-text{
 .footer_dark p {
     color: #F3F4F6;
     
+}
+button.todo_footer-btn{
+    border: none;
+    margin: 0;
+    font-size: 1rem;
+    border-radius: 5px;
+    height: 2rem;
 }
 

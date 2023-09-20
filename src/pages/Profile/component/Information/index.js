@@ -1,38 +1,50 @@
-import avatar from "../../image/avatar/user_01.jpg";
+import avatarCrazy from "../../image/avatar/crazy_code.jpg";
 import "./style.css";
 import ThemeContext from "../../../../contexts/ThemeContext";
 
 import { useContext } from "react";
+import {
+  BsHouseFill,
+  BsTelephonePlusFill,
+  BsFillEnvelopeAtFill,
+  BsFillGeoAltFill,
+} from "react-icons/bs";
 
 const Information = ({ data }) => {
-  const { name, age, major, description, address, location, phone, email } =
-    data;
-;
-const {theme} = useContext(ThemeContext)
-const classInfomation = theme === "light" ? "information information_bg-light" :"information information_bg-dark"
-const classInfoUser = theme === "light" ? "info_user-light" :"info_user-dark"
+  const { name, major, description, address, location, phone, email } = data;
+  const { theme } = useContext(ThemeContext);
+
+  const classInfomation =
+    theme === "light"
+      ? "information information--light"
+      : "information information--dark";
 
   return (
     <div className={classInfomation}>
       <div className="avatar_user">
         <img
-          className="info_image"
-          src={avatar}
+          className="info_image image-light image-dark"
+          src={avatarCrazy}
           alt={`Avatar for ${data.name}`}
         ></img>
       </div>
-      <div className={classInfoUser}>
+      <div className="info_user info_user-light info_user-dark">
         <h3>hello everybody, i am</h3>
-        <h1>
-          {name} {age}
-        </h1>
+        <h1>{name}</h1>
         <h3>{major}</h3>
         <p className="description-width">{description}</p>
-        <p><i className="fa-solid fa-house-user user_icon--style"></i> {address}</p>
-        <p><i className="fa-solid fa-phone user_icon--style"></i> {phone}</p>
-        <p><i className="fa-solid fa-envelope user_icon--style"></i> {email}</p>
-        <p><i className="fa-solid fa-location-dot user_icon--style"></i> {location}</p>
-      
+        <p className="user-text--flex">
+          <BsHouseFill className="info_user-icon color-light color-dark"/>{address}
+        </p>
+        <p className="user-text--flex">
+          <BsTelephonePlusFill className="info_user-icon color-light color-dark"/>{phone}
+        </p>
+        <p className="user-text--flex">
+          <BsFillEnvelopeAtFill className="info_user-icon color-light color-dark"/>{email}
+        </p>
+        <p className="user-text--flex">
+          <BsFillGeoAltFill className="info_user-icon color-light color-dark"/>{location}
+        </p>
       </div>
     </div>
   );

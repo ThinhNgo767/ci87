@@ -1,9 +1,8 @@
-
 import TodoItem from "../TodoItem";
 import "./style.css";
 import ThemeContext from "../../../../contexts/ThemeContext";
 
-import { useContext } from "react";
+import {useContext } from "react";
 
 const TodoList = ({
   dataTodos,
@@ -12,24 +11,52 @@ const TodoList = ({
   filterTodos,
   setFilter,
 }) => {
-const {theme} = useContext(ThemeContext)
-const classFilter = theme === "light" ? "filer_todo filter-light" :"filer_todo filter-dark"
+  const { theme } = useContext(ThemeContext);
+
+  const classTodoList =
+    theme === "light"
+      ? "todo_list todo_list--light"
+      : "todo_list todo_list--dark";
+  const classFilter =
+    theme === "light" ? "filter filter-light" : "filter filter-dark";
 
   return (
-    <div className="todo_list">
-      <form style={{ display: "flex", marginBottom: "1rem" }}>
-        <select
-          className={classFilter}
-          name="filer_todo"
-          title="filter"
-          onChange={(e) => setFilter(e.target.value)}
-        >
-          <option value="All">All Todo</option>
-          <option value="Active">Active Todo</option>
-          <option value="Completed">Completed Todo</option>
-        </select>
-      </form>
-
+    <div className={classTodoList}>
+      <div className="filter-task style--light style--dark">
+        <label className={classFilter} htmlFor="all">
+          <input
+            type="radio"
+            name="checktask"
+            value="All"
+            id="all"
+            onChange={(e)=>setFilter(e.target.value)}
+      
+          />
+          All
+        </label>
+        <label className={classFilter} htmlFor="active">
+          <input
+            type="radio"
+            name="checktask"
+            value="Active"
+            id="active"
+            onChange={(e)=>setFilter(e.target.value)}
+           
+          />
+          Active
+        </label>
+        <label className={classFilter} htmlFor="completed">
+          <input
+            type="radio"
+            name="checktask"
+            value="Completed"
+            id="completed"
+            onChange={(e)=>setFilter(e.target.value)}
+        
+          />
+          Completed
+        </label>
+      </div>
       {filterTodos().map((todo) => (
         <TodoItem
           key={todo.id}

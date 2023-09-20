@@ -1,34 +1,40 @@
 .home{
     text-align: center;
 }
-.home .circle-style {
-    font-size: 6rem;
+.home-light .circle-style {
+    font-size: 10rem;
     color: #087EA4;
-
+}
+.home-dark .circle-style {
+    font-size: 10rem;
+    color: #149ace;
 }
 .home .home_title{
-    font-size: 4rem;
+    font-size: 3.5rem;
     width: 30vw;
     margin: auto;
     padding: 2rem 0;
+    letter-spacing: 1px;
 }
 .home .home_intro{
     width: 55vw;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 2rem;
+    
 }
 .get_todo{
     width: 9rem;
     height: 2.5rem;
     font-size: 1.2rem;
     border-radius: 8px;
+    letter-spacing: 1px;
 }
-.home_title-light{
+.home-light .home_title-light{
     color: #23272F;
 }
-.home_title-dark{
+.home-dark .home_title-dark{
     color: #F6F7F9;
 }
 
-.home_intro-light{color: #23272F;}
-.home_intro-dark{color: #F6F7F9;}
+.home-light .home_intro-light{color: #23272F;}
+.home-dark .home_intro-dark{color: #F6F7F9;}

@@ -1,21 +1,9 @@
-.todo_header {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: flex-start;
-  align-items: center;
-}
-.todo_header p {
-  margin: 0;
-  padding-bottom: 0.25rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-.header__pomodoros {
+.todo-header_add-taks .header__pomodoros {
   display: flex;
   align-items: center;
   gap: 0.25rem;
 }
-.input__pomodoros {
+.todo-header_add-taks .input__pomodoros {
   width: 2rem;
   height: 2rem;
   padding: 0;
@@ -25,12 +13,12 @@
   border-radius: 2px;
   outline: 1px solid #e6e8ed;
 }
-.header__pomodoros button {
+.todo-header_add-taks .header__pomodoros button {
   width: 2rem;
   height: 2rem;
   border-radius: 2px;
 }
-.input_task {
+.todo-header_add-taks .input_task {
   min-width: 20rem;
   min-height: 1.5rem;
   font-size: 1rem;
@@ -38,109 +26,77 @@
   border: none;
   outline: none;
 }
-.input_task-light {
+.todo-header_add-taks--light .input_task-light {
   background: #f3f4f6;
   color: #343a46;
 }
-
-.input_task-dark {
+.todo-header_add-taks--dark .input_task-dark {
   background: #343a46;
   color: #ffffff;
   outline: none;
 }
-
-.input_task:focus {
+.todo-header_add-taks .input_task:focus {
   border: none;
 }
-.add_todo {
+.header_addtask-button .button_add_task {
   width: 8rem;
   height: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1rem;
   border-radius: 3px;
 }
-button {
-  background: #087ea4;
-  color: #ffffff;
-  border: none;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-.add__taks-button {
+.todo-header_add-taks .add__taks-button {
   text-align: right;
 }
-.add__taks-button button {
+.todo-header_add-taks .add__taks-button button {
   width: 5.2rem;
   font-size: 1.1rem;
   height: 2.4rem;
   margin: 0.5rem;
   border-radius: 5px;
 }
-.add__taks-button .cancel_todo-light {
+.todo-header_add-taks--light .cancel_todo-light {
   background-color: #f8f9fa;
   color: #23272f;
   outline: 1px solid #e2e3e9;
 }
-
-.add__taks-button .cancel_todo-dark {
+.todo-header_add-taks--dark .cancel_todo-dark {
   background-color: #23272f;
   color: #f6f7f9;
   outline: 1px solid #404756;
 }
-
-
-
-
-button:active {
-  transform: translateY(3px);
-}
-
-.new__taks {
+.todo-header_add-taks .new__taks {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 0.5rem;
   border-radius: 5px;
   outline: 1px solid #c0c0c0;
-  
 }
-.header_theme_btn {
+.todo-header_add-taks .header_addtask-button {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-
-i.fa-solid.color--while {
+.todo-header_add-taks .button_plus-style {
   color: #ffffff;
-}
-i.style--margin {
   margin-right: 0.3rem;
+  font-size: 1rem;
 }
-.new__taks-light {
+.todo-header_add-taks--light .new__taks-light {
   background-color: #f3f4f6;
 }
-
-.new__taks-dark {
+.todo-header_add-taks--dark .new__taks-dark {
   background-color: #444b59;
-  
 }
 
-.new__taks-light p {
+.todo-header_add-taks--light .new__taks-light p {
   font-size: 1rem;
   color: #444b59;
 }
-
-.new__taks-dark p {
+.todo-header_add-taks--dark .new__taks-dark p {
   font-size: 1rem;
   color: #f8f9fa;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
 }
