@@ -3,6 +3,12 @@ import ThemeContext from "../../../../contexts/ThemeContext";
 
 import { useState } from "react";
 import { useContext } from "react";
+import {
+  BsPencilSquare,
+  BsCheckCircleFill,
+  BsCaretUpFill,
+  BsCaretDownFill,
+} from "react-icons/bs";
 
 const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
   const { id, todo, isCompleted, estPomodoros } = dataTodos;
@@ -12,28 +18,20 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
   const { theme } = useContext(ThemeContext);
 
   const styleCompleted = isCompleted
-    ? { color: "#087EA4" }
+    ? theme === "light"
+      ? { color: "#087EA4" }
+      : { color: "#A6A6A6" }
     : theme === "light"
-    ? { color: "grey" }
+    ? { color: "#404756" }
     : { color: "#F6F7F9" };
+
   const classNameTaks =
-    theme === "light" ? "todo__task" : "todo__task style--dark";
-  const classInputTaks =
     theme === "light"
-      ? "input_task input_task-light"
-      : "input_task input_task-dark";
-  const classInputPomodoros =
-    theme === "light"
-      ? "input__pomodoros input_task-light"
-      : "input__pomodoros input_task-dark";
-  const classCancelButton =
-    theme === "light"
-      ? "todo-item_cancel--button-light"
-      : "todo-item_cancel--button-dark";
-      const classDeleteButton =
-    theme === "light"
-      ? "todo-item_delete--button-light"
-      : "todo-item_delete--button-dark";
+      ? "todo__task todo__task--light"
+      : "todo__task todo__task--dark";
+  const classCompleted = isCompleted
+    ? "competed competed-light competed-dark"
+    : "";
 
   const handleUpdateTodo = () => {
     dataTodos.todo = todoText;
@@ -61,33 +59,43 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
         <div className="edit__taks">
           <input
             type="text"
-            className={classInputTaks}
+            className="input_task input_task-light input_task-dark"
             placeholder="Enter your task here ..."
             value={todoText}
             onChange={(e) => setTodoText(e.target.value)}
             autoFocus
           ></input>
           <p>Est Pomodoros</p>
-          <div className="header__pomodoros">
+          <div className="todo__task_pomodoros">
             <input
               type="number"
-              className={classInputPomodoros}
+              className="input__pomodoros input_task-light input_task-dark"
               title="estPomodoros"
               value={pomodoros}
               readOnly
             />
-            <button onClick={increase}>
-              <i className="fa-solid fa-caret-up color--while"></i>
+            <button
+              type="button"
+              className="pomodoros-button"
+              onClick={increase}
+              title="up"
+            >
+              <BsCaretUpFill className="increase_button" />
             </button>
-            <button onClick={decrease}>
-              <i className="fa-solid fa-caret-down color--while"></i>
+            <button
+              type="button"
+              className="pomodoros-button"
+              onClick={decrease}
+              title="down"
+            >
+              <BsCaretDownFill className="decrease_button" />
             </button>
           </div>
 
           <div className="edit__taks-button add__taks-button">
             <button
               type="button"
-              className={classDeleteButton}
+              className="todo-item_delete todo-item_delete--light todo-item_delete--dark"
               onClick={() => handleDeleteTodo(id)}
             >
               Delete
@@ -95,14 +103,14 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
             <div>
               <button
                 type="button"
-                className={classCancelButton}
+                className="todo-item_cancel todo-item_cancel--light todo-item_cancel--dark"
                 onClick={() => setIsEditing(!isEditing)}
               >
                 Cancel
               </button>
               <button
                 type="button"
-                className="save_todo"
+                className="todo-item_save"
                 onClick={() => handleUpdateTodo()}
               >
                 Save
@@ -113,22 +121,26 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
       ) : (
         <div className="task__item">
           <div>
-            <button className="check_todo" onClick={() => todoCompleted(id)}>
-              <i
-                className="fa-solid fa-circle-check"
+            <button
+              className="check_todo"
+              title="Completed"
+              onClick={() => todoCompleted(id)}
+            >
+              <BsCheckCircleFill
+                className="check_todo-button"
                 style={styleCompleted}
-              ></i>
+              />
             </button>
-            <label className={isCompleted ? "competed" : ""}>{todoText}</label>
+            <label className={classCompleted}>{todoText}</label>
           </div>
           <div>
-            <label className="estPomodoros">{pomodoros}</label>
+            <label className={classCompleted}>{pomodoros}</label>
             <button
               className="button__edit_taks"
-              title="edit"
+              title="Edit"
               onClick={() => setIsEditing(!isEditing)}
             >
-              <i className="fa-solid fa-pen-to-square edit_todo--hover"></i>
+              <BsPencilSquare className="edit_todo-button edit_todo-button--light edit_todo-button--dark" />
             </button>
           </div>
         </div>

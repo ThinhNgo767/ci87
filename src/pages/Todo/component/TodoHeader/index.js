@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { BsPlusCircleFill } from "react-icons/bs";
 
 import ThemeContext from "../../../../contexts/ThemeContext";
 
@@ -13,11 +14,12 @@ const TodoHeader = ({
   pomodoros,
   setPomodoros,
 }) => {
-  const {theme} = useContext(ThemeContext)
-  const classNewTask = theme === "light" ?"new__taks new__taks-light" :"new__taks new__taks-dark"
-  const classInputTaks =theme === "light" ?"input_task input_task-light" :"input_task input_task-dark"
-  const classInputPomodoros =theme === "light" ?"input__pomodoros input_task-light" :"input__pomodoros input_task-dark"
-  const classCancelTodo =theme === "light" ?"cancel_todo-light" :"cancel_todo-dark"
+  const { theme } = useContext(ThemeContext);
+
+  const classTodoHeader =
+    theme === "light"
+      ? "todo-header_add-taks todo-header_add-taks--light"
+      : "todo-header_add-taks todo-header_add-taks--dark";
 
   const increase = () => {
     if (pomodoros === 10) {
@@ -32,12 +34,12 @@ const TodoHeader = ({
     setPomodoros(pomodoros - 1);
   };
   return (
-    <div className='add__taks'>
+    <div className={classTodoHeader}>
       {newTask ? (
-        <div className={classNewTask}>
+        <div className="new__taks new__taks-light new__taks-dark">
           <input
             type="text"
-            className={classInputTaks}
+            className="input_task input_task-light input_task-dark"
             placeholder="Enter your task here ..."
             value={newTodo}
             onChange={handleInputChange}
@@ -47,8 +49,8 @@ const TodoHeader = ({
           <div className="header__pomodoros">
             <input
               type="number"
-              className={classInputPomodoros}
-              title="estPomodoros"
+              className="input__pomodoros input_task-light input_task-dark"
+              title="est pomodoros"
               value={pomodoros}
               readOnly
             />
@@ -62,7 +64,7 @@ const TodoHeader = ({
           <div className="add__taks-button">
             <button
               type="button"
-              className={classCancelTodo}
+              className="cancel_todo-light cancel_todo-dark"
               onClick={() => setNewTask(false)}
             >
               Cancel
@@ -73,16 +75,15 @@ const TodoHeader = ({
           </div>
         </div>
       ) : (
-        <div className="header_theme_btn">
+        <div className="header_addtask-button">
           <button
             type="button"
-            className="add_todo"
+            className="button_add_task"
             onClick={() => setNewTask(true)}
           >
-            <i className="fa-solid fa-circle-plus color--while style--margin"></i>
+            <BsPlusCircleFill className="button_plus-style" />
             Add Task
           </button>
-          
         </div>
       )}
     </div>

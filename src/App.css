@@ -1,5 +1,4 @@
 .App {
-  background-color: #FFFFFF;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -8,7 +7,36 @@
   gap: 5rem;
   font-family: 'Roboto', sans-serif;
 }
+.App_background--light{
+  background-color: #ffffff;
+  background-image: linear-gradient(180deg, #ABD3E0, #ffffff);
+}
+.App_background--dark{
+  background-color: #23272f;
+  background-image: linear-gradient(180deg, #ABD3E0, #23272f);
+}
 
-.background--dark{
-  background-color: #23272F;
+button {
+  background: #087ea4;
+  color: #ffffff;
+  border: none;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+button:active {
+  transform: translateY(3px);
+}
+h1,h3 {
+  text-transform: uppercase;
+  letter-spacing: 2px
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }

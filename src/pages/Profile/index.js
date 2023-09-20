@@ -1,10 +1,6 @@
 
 import "./style.css";
 import Information from "./component/Information";
-import ThemeContext from "../../contexts/ThemeContext"
-
-import { useContext } from "react";
-
 
 const dataUser = 
   {
@@ -19,11 +15,8 @@ const dataUser =
   }
 
 const Profile = () => {
-  const {theme} = useContext(ThemeContext)
-  const classProfile = theme === "light" ? "profile profile-background-light" :"profile profile-background-dark"
-
   return (
-    <div className={classProfile}>
+    <div className="profile">
       <Information data={dataUser} />
     </div>
   );
