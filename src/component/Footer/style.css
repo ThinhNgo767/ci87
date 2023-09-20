@@ -1,0 +1,28 @@
+.footer{
+width: 100%;
+text-align: center;
+}
+.footer p{
+    font-size: 0.9rem;
+    margin: 0.25rem 0;
+    padding: 0.25rem 0;
+    
+}
+
+.footer_text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.footer_bg-light{
+    background-color: #f3f4f6;
+    color: #23272F;
+  }
+  
+  .footer_bg-dark{
+    background-color: #374151;
+    color: #f3f4f6;
+  }

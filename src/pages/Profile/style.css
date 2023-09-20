@@ -1,0 +1,16 @@
+.profile {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.profile-background-light{
+  background-color: #ffffff;
+  background-image: linear-gradient(180deg, #ABD3E0, #ffffff);
+}
+.profile-background-dark{
+  background-color: #23272f;
+  background-image: linear-gradient(180deg, #ABD3E0, #23272f);
+}
+
+

@@ -1,27 +1,35 @@
-import TodoFooter from "../../Component/TodoFooter";
-import TodoHeader from "../../Component/TodoHeader";
-import TodoList from "../../Component/TodoList";
-import { useState } from "react";
+import "./style.css"
+import TodoFooter from "./component/TodoFooter";
+import TodoHeader from "./component/TodoHeader";
+import TodoList from "./component/TodoList";
 import { TODOS } from "../../data/todos";
+import ThemeContext from "../../contexts/ThemeContext";
 
-const Todo =() =>{
+import { useState , useContext} from "react";
+
+
+const Todo = () => {
   // Khai báo state
   const [todos, setTodos] = useState(TODOS);
   const [newTodo, setNewTodo] = useState("");
-  const [editTodo, setEditTodo] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
-  const [todoId, setTodoId] = useState(null);
-
+  const [filter, setFilter] = useState("All todo");
+  const [newTask, setNewTask] = useState(false);
+  const [pomodoros, setPomodoros] = useState(1);
+  
+  const {theme} = useContext(ThemeContext)
   // hàm xử lí khi input checkbox có sự thay đổi
   const handleCheckboxChange = (id) => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
-        return { ...todo, isCompleted: !todo.isCompleted };
+        todo = { ...todo, isCompleted: !todo.isCompleted };
       }
       return todo;
     });
-    setTodos(updatedTodos);
+    const movedTodo = updatedTodos.find((todo) => todo.id === id);
+    const remainingTodos = updatedTodos.filter((todo) => todo.id !== id);
+    setTodos([...remainingTodos, movedTodo]);
   };
+
   //event value input
   const handleInputChange = (e) => {
     setNewTodo(e.target.value);
@@ -36,59 +44,52 @@ const Todo =() =>{
       id: todos.length + 1,
       todo: newTodo,
       isCompleted: false,
+      estPomodoros: pomodoros,
     };
 
     setTodos([...todos, todo]);
     setNewTodo("");
+    setNewTask(false);
+    setPomodoros(1);
   };
-  // edit todo 
-  const handleEditTodo = (todoId) => {
-    const taskToEdit = todos.find((todo) => todo.id === todoId);
-    setEditTodo(taskToEdit.todo);
-    setTodoId(todoId);
-    setIsEditing(true);
-  };
-  // update todo
-  const handleUpdateTodo = () => {
-    // tìm vị trí todo cần edit
-    const taskIndex = todos.findIndex((todo) => todo.id === todoId);
-    if (taskIndex !== -1) {
-      // clone arr
-      const updatedTodos = [...todos];
-      // Update  todo
-      updatedTodos[taskIndex].todo = editTodo;
-      // Update lại todos cho state
-      setTodos(updatedTodos);
-      //
-      setEditTodo("");
-      setIsEditing(false);
-    }
-  };
+  // delete todo
   const handleDeleteTodo = (todoId) => {
-    const updatedTodos = todos.filter(todo => todo.id !== todoId);
+    const updatedTodos = todos.filter((todo) => todo.id !== todoId);
     setTodos(updatedTodos);
   };
+  // filter todo
+  const filterTodos = () => {
+    if (filter === "Active") {
+      return todos.filter((todo) => !todo.isCompleted);
+    } else if (filter === "Completed") {
+      return todos.filter((todo) => todo.isCompleted);
+    } else {
+      return todos.filter((todo) => todo.todo);
+    }
+  };
+
+const classTodoPage = theme === "light" ?"todo__page todo__page-light":"todo__page todo__page-dark"
+
   return (
-    <div>
+    <div className={classTodoPage}>
       <TodoHeader
         handleInputChange={handleInputChange}
         handleAddTodo={handleAddTodo}
         newTodo={newTodo}
-        editTodo={editTodo}
-        isEditing={isEditing}
-        setEditTodo={setEditTodo}
-        handleUpdateTodo={handleUpdateTodo}
-      
+        newTask={newTask}
+        setNewTask={setNewTask}
+        pomodoros={pomodoros}
+        setPomodoros={setPomodoros}
       />
       <TodoList
         dataTodos={todos}
         todoCompleted={handleCheckboxChange}
-        handleEditTodo={handleEditTodo}
         handleDeleteTodo={handleDeleteTodo}
-       
+        filterTodos={filterTodos}
+        setFilter={setFilter}
       />
-      <TodoFooter dataTodos={todos} />
+      <TodoFooter dataTodos={todos} filter={filter} />
     </div>
   );
-}
-export default Todo
+};
+export default Todo;

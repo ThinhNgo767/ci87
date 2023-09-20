@@ -1,12 +1,14 @@
 .App {
-  text-align: center;
-  background-color: white;
+  background-color: #FFFFFF;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Times New Roman', Times, serif;
-  
+  gap: 5rem;
+  font-family: 'Roboto', sans-serif;
 }
 
+.background--dark{
+  background-color: #23272F;
+}

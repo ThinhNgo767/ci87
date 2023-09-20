@@ -1,8 +1,0 @@
-.todo_footer{
-    display: flex;
-    justify-content: space-between;
-}
-.todo_footer p{
-    font-size: 1.2rem;
-    color: gray;
-}
