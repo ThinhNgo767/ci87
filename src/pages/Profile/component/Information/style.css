@@ -59,3 +59,23 @@
 .description-width {
   width: 25vw;
 }
+@media only screen and (max-width: 480px) {
+  .information{
+    flex-direction: column;
+    width: 90vw;
+    height: 90vh;
+  }
+  .info_image {
+    width: 80vw;
+    height: 30vh;
+    margin-top: 5rem;
+    margin-left: 1.2rem;
+  }
+  .info_user{
+    padding-left: 1rem;
+    padding-bottom: 5rem;
+  }
+  .description-width{
+    width: 80vw;
+  }
+}

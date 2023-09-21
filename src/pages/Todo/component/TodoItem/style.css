@@ -3,10 +3,12 @@
   margin: 0.8rem 0;
   padding: 0.5rem;
   border-radius: 5px;
+  outline: 1px solid #999999;
 }
 .todo__task--light {
   background-color: #f3f4f6;
   box-shadow: 2px 2px 2px #999999;
+ 
 }
 .todo__task p {
   font-size: 1rem;
@@ -19,7 +21,8 @@
 }
 .todo__task--dark {
   background-color: #444b59;
-  box-shadow: 0px 1px 3px #f0f1f4;
+  box-shadow: 2px 1px 5px #f0f1f4;
+  
 }
 .todo__task label {
   font-size: 1.3rem;
@@ -102,7 +105,7 @@
 
 .todo__task--dark .todo-item_cancel--dark,
 .todo__task--dark .todo-item_delete--dark {
-  background-color: #23272f;
+  background-color: #252932;
   color: #f6f7f9;
   outline: 1px solid #404756;
 }

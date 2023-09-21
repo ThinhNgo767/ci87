@@ -86,7 +86,9 @@ const Todo = () => {
         todoCompleted={handleCheckboxChange}
         handleDeleteTodo={handleDeleteTodo}
         filterTodos={filterTodos}
+        filter={filter}
         setFilter={setFilter}
+      
       />
       <TodoFooter dataTodos={todos} filter={filter} />
     </div>

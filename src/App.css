@@ -20,11 +20,14 @@ button {
   background: #087ea4;
   color: #ffffff;
   border: none;
-  transition: all 0.3s;
+  transition: all 0.2s;
   cursor: pointer;
 }
 button:active {
   transform: translateY(3px);
+}
+button:hover {
+  transform: translateY(1px);
 }
 h1,h3 {
   text-transform: uppercase;

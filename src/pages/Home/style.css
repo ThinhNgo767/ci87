@@ -38,3 +38,14 @@
 
 .home-light .home_intro-light{color: #23272F;}
 .home-dark .home_intro-dark{color: #F6F7F9;}
+
+@media only screen and (max-width: 480px) {
+    .home .home_intro{
+        width: 80vw;
+    font-size: 1.2rem;
+    }
+    .home .home_title{
+        font-size: 2.5rem;
+    width: 60vw;
+    }
+}
