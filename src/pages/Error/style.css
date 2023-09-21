@@ -1,0 +1,25 @@
+.error{
+    padding: 2rem;
+}
+.error--light .text-error--light{
+color: #23272f;
+}
+.error--dark .text-error--dark {
+    color: #f6f7f9;
+}
+.text-title{
+    font-size: 4rem;
+}
+img.img-logo_todo{
+    width: 15rem;
+}
+button.error-button{
+    margin-top: 1rem;
+    width: fit-content;
+    height: 2rem;
+}
+@media only screen and (max-width: 480px) {
+    .text-title{
+        font-size: 2rem;
+    }  
+}

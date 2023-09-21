@@ -1,5 +1,7 @@
 .todo-header_add-taks .header__pomodoros {
+  width: 100%;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   gap: 0.25rem;
 }
@@ -17,6 +19,11 @@
   width: 2rem;
   height: 2rem;
   border-radius: 2px;
+}
+.header__pomodoros button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .todo-header_add-taks .input_task {
   min-width: 20rem;

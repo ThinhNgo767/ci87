@@ -4,6 +4,7 @@ import Footer from "./component/Footer";
 import Home from "./pages/Home";
 import Todo from "./pages/Todo";
 import Profile from "./pages/Profile";
+import Error from "./pages/Error";
 
 import ThemeContext from "./contexts/ThemeContext";
 import { useState } from "react";
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/todo" element={<Todo />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<Error/>} />
         </Routes>
         <Footer />
       </ThemeContext.Provider>
