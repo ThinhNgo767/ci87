@@ -72,3 +72,11 @@ button.light--theme {
   border-bottom: 1px solid #dadada;
   top: -4rem;
 }
+@media only screen and (max-width: 480px) {
+   .header{
+    gap: 3rem;
+   } 
+   .header ul{
+    gap:0.5rem
+   }
+}

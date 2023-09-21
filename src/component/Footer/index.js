@@ -16,7 +16,10 @@ const Footer = () => {
         <p>Địa chỉ: Số 999 Nơi Xa Xôi, P. Ko Nắng Nôi, Quận Chảy Mồ Hôi</p>
         <p>Số điện thoại: 02888888888</p>
       </div>
+      <div className="footer_text">
       <p>Giấy phép thiết lập App số 99/GP-BTTTT, Ký ngày: 99/99/9999</p>
+      </div>
+      
     </div>
   );
 };

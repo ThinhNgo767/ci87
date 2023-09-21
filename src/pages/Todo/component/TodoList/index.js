@@ -2,16 +2,19 @@ import TodoItem from "../TodoItem";
 import "./style.css";
 import ThemeContext from "../../../../contexts/ThemeContext";
 
-import {useContext } from "react";
+import { useContext } from "react";
 
 const TodoList = ({
-  dataTodos,
   todoCompleted,
   handleDeleteTodo,
-  filterTodos,
+  filterTodos,filter,
   setFilter,
 }) => {
   const { theme } = useContext(ThemeContext);
+  
+  const handleChecked = (e) => {
+    setFilter(e.target.value);
+  };
 
   const classTodoList =
     theme === "light"
@@ -29,8 +32,8 @@ const TodoList = ({
             name="checktask"
             value="All"
             id="all"
-            onChange={(e)=>setFilter(e.target.value)}
-      
+            checked={filter === "All"}
+            onChange={handleChecked}
           />
           All
         </label>
@@ -40,8 +43,8 @@ const TodoList = ({
             name="checktask"
             value="Active"
             id="active"
-            onChange={(e)=>setFilter(e.target.value)}
-           
+            checked={filter === "Active"}
+            onChange={handleChecked}
           />
           Active
         </label>
@@ -51,8 +54,8 @@ const TodoList = ({
             name="checktask"
             value="Completed"
             id="completed"
-            onChange={(e)=>setFilter(e.target.value)}
-        
+            checked={filter === "Completed"}
+            onChange={handleChecked}
           />
           Completed
         </label>

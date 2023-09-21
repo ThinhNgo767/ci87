@@ -16,6 +16,7 @@
   margin-bottom: 1.5rem;
   padding: 0.5rem 0;
   border-radius: 5px;
+  outline: 1px solid #999999;
 }
 .todo_list--light .style--light {
   box-shadow: 2px 2px 2px #999999;

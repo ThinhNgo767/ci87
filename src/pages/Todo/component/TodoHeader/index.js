@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { BsPlusCircleFill } from "react-icons/bs";
+import { BsPlusCircleFill ,BsCaretUpFill,
+  BsCaretDownFill,} from "react-icons/bs";
 
 import ThemeContext from "../../../../contexts/ThemeContext";
-
 import "./style.css";
 
 const TodoHeader = ({
@@ -55,10 +55,10 @@ const TodoHeader = ({
               readOnly
             />
             <button onClick={increase}>
-              <i className="fa-solid fa-caret-up color--while"></i>
+              <BsCaretUpFill className="header_increase-button"/>
             </button>
             <button onClick={decrease}>
-              <i className="fa-solid fa-caret-down color--while"></i>
+              < BsCaretDownFill className="header_decrease-button"/>
             </button>
           </div>
           <div className="add__taks-button">

@@ -39,8 +39,8 @@
   border: none;
 }
 .header_addtask-button .button_add_task {
-  width: 8rem;
-  height: 2.4rem;
+  width: 100%;
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,7 +63,7 @@
   outline: 1px solid #e2e3e9;
 }
 .todo-header_add-taks--dark .cancel_todo-dark {
-  background-color: #23272f;
+  background-color: #252932;
   color: #f6f7f9;
   outline: 1px solid #404756;
 }
@@ -99,4 +99,13 @@
 .todo-header_add-taks--dark .new__taks-dark p {
   font-size: 1rem;
   color: #f8f9fa;
+}
+.header_addtask-button .button_add_task:hover {
+  transform: translateY(1px);
+  opacity: 0.9;
+  background-color: #149eca;
+}
+.new__taks .header_increase-button,
+.new__taks .header_decrease-button {
+  font-size: 1.2rem;
 }
