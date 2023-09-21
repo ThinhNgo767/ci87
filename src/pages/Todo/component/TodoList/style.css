@@ -1,5 +1,9 @@
 .todo_list {
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-top: 2px dashed #999999;
+  border-bottom: 2px dashed #999999;
 }
 
 .filter-task,
@@ -9,14 +13,14 @@
   justify-content: center;
   gap: 0.25rem;
 }
+
 .filter-task {
   gap: 0.5rem;
-}
-.filter-task {
   margin-bottom: 1.5rem;
   padding: 0.5rem 0;
   border-radius: 5px;
   outline: 1px solid #999999;
+  margin-top: 1rem;
 }
 .todo_list--light .style--light {
   box-shadow: 2px 2px 2px #999999;
@@ -38,4 +42,18 @@ label.filter-dark {
 .todo_list input[type="radio"] {
   width: 1.1rem;
   height: 1.1rem;
+}
+.todo_list--light .filter-text--light,.todo_list--light .taks-list--light {
+  color: #404756;
+}
+.todo_list--dark .filter-text--dark ,.todo_list--dark .taks-list--dark {
+  color: #f3f4f6;
+}
+.todo_list .filter-text , .todo_list .taks-list {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.todo_list .filter_icon{
+  font-size: 1.4rem;
 }
