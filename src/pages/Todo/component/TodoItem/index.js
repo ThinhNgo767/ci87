@@ -23,7 +23,7 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
       : { color: "#A6A6A6" }
     : theme === "light"
     ? { color: "#404756" }
-    : { color: "#F6F7F9" };
+    :{ color: "#F6F7F9" } ;
 
   const classNameTaks =
     theme === "light"
