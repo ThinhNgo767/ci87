@@ -23,14 +23,15 @@
   align-items: center;
   gap: 1rem;
 }
-.header .sun {
-  font-size: 1.3rem;
-}
+
 .header .moon {
   color: #404756;
-  font-size: 1.3rem;
+  
 }
-
+.header .sun , .header .moon{
+  font-size: 1.3rem;
+  padding: 0.25rem 0;
+}
 .navigator a {
   text-decoration: none;
   font-size: 1.2rem;
@@ -42,11 +43,16 @@
 .color-link-light {
   color: #404756;
 }
+.color-link-light:hover{
+  background-color: #EBECF0;
+}
 
 .color-link-dark {
   color: #f3f4f6;
 }
-
+.color-link-dark:hover{
+  background-color: #333A45;
+}
 .active-item-light {
   background-color: #e6f7ff;
   color: #087ea4;

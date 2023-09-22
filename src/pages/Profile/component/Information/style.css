@@ -64,6 +64,7 @@
     flex-direction: column;
     width: 90vw;
     height: 90vh;
+    padding: 2rem 0;
   }
   .info_image {
     width: 80vw;
@@ -73,7 +74,7 @@
   }
   .info_user{
     padding-left: 1rem;
-    padding-bottom: 8rem;
+    padding-bottom: 3rem;
   }
   .description-width{
     width: 80vw;

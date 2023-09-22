@@ -3,10 +3,10 @@ import "./style.css"
 import ThemeContext from "../../contexts/ThemeContext";
 
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Error = () => {
-    const navigate = useNavigate();
+   
     const {theme} = useContext(ThemeContext)
     const classError = theme === "light" ?"error error--light" : "error error--dark"
   return (
@@ -16,17 +16,15 @@ const Error = () => {
         <h1 className="text-error--light text-error--dark text-title">404. That's an error</h1>
         <h2 className="text-error--light text-error--dark">Page not found</h2>
         <p className="text-error--light text-error--dark">
-        Oops the requested URL <strong>{window.location.pathname}</strong> was not found on this
+        Oops the requested URL <strong className="pathname">{window.location.pathname}</strong> was not found on this
           server. 
         </p>
         <p className="text-error--light text-error--dark">The page you are looking for doesn't exist or an other error occurred.</p>
         <p className="text-error--light text-error--dark">
-        Go back, or head over to <strong>todoappci87.netlify.app </strong> to choose a new direction.
+        Go back, or head over to <Link to="/" className="error-link error-link--light error-link--dark"><strong>ci87app.netlify.app</strong></Link> to choose a new direction.
         </p>
       </div>
-      <button type="button" title="back home" className="error-button" onClick={() => {
-          navigate("/");
-        }}>Back to home</button>
+      <button type="button" title="back home" className="error-button" onClick={()=>window.history.back()}>Back</button>
     </div>
   );
 };

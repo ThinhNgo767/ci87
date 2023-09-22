@@ -15,9 +15,23 @@ img.img-logo_todo{
 }
 button.error-button{
     margin-top: 1rem;
-    width: fit-content;
-    height: 2rem;
+    width: 3.5rem;
+    height: 1.5rem;
 }
+.error-link{
+    text-decoration: none;
+}
+.error--light .error-link--light{
+    color: #087EA4;
+}
+.error--dark .error-link--dark{
+    color: #149ECA;
+}
+.pathname{
+    font-size: 1.2rem;
+}
+
+
 @media only screen and (max-width: 480px) {
     .text-title{
         font-size: 2rem;
