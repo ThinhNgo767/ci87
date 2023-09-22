@@ -1,4 +1,4 @@
-import "./style.css"
+import "./style.css";
 import ThemeContext from "../../contexts/ThemeContext";
 
 import { useContext } from "react";
@@ -6,7 +6,8 @@ import { useContext } from "react";
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
 
-  const classHeader = theme === "light" ? "footer footer_bg-light" :"footer footer_bg-dark"
+  const classHeader =
+    theme === "light" ? "footer footer_bg-light" : "footer footer_bg-dark";
 
   return (
     <div className={classHeader}>
@@ -17,9 +18,11 @@ const Footer = () => {
         <p>Số điện thoại: 02888888888</p>
       </div>
       <div className="footer_text">
-      <p>Giấy phép thiết lập APP số 99/GP-BTTTT, Tự ký ngày: 99/99/9999</p>
+        <p className="paragraph">
+          Giấy phép thiết lập APP số 99/GP-BTTTT,
+          <span> Tự ký ngày: 99/99/9999</span>
+        </p>
       </div>
-      
     </div>
   );
 };

@@ -26,9 +26,9 @@
 
 .header .moon {
   color: #404756;
-  
 }
-.header .sun , .header .moon{
+.header .sun,
+.header .moon {
   font-size: 1.3rem;
   padding: 0.25rem 0;
 }
@@ -43,15 +43,15 @@
 .color-link-light {
   color: #404756;
 }
-.color-link-light:hover{
-  background-color: #EBECF0;
+.color-link-light:hover {
+  background-color: #ebecf0;
 }
 
 .color-link-dark {
   color: #f3f4f6;
 }
-.color-link-dark:hover{
-  background-color: #333A45;
+.color-link-dark:hover {
+  background-color: #333a45;
 }
 .active-item-light {
   background-color: #e6f7ff;
@@ -79,10 +79,10 @@ button.light--theme {
   top: -4rem;
 }
 @media only screen and (max-width: 480px) {
-   .header{
+  .header {
     gap: 3rem;
-   } 
-   .header ul{
-    gap:0.5rem
-   }
+  }
+  .header ul {
+    gap: 0.5rem;
+  }
 }

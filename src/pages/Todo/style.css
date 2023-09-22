@@ -9,5 +9,9 @@
 }
 .todo__page-dark{
     background-color: #444b59;
-   
+}
+@media only screen and (max-width: 480px) {
+    .todo__page{
+        padding: 3rem 2.2rem;
+    } 
 }

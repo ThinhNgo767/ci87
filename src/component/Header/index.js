@@ -66,7 +66,8 @@ const Header = () => {
         </li>
       </ul>
       {theme === "light" ? (
-        <button type="button"
+        <button
+          type="button"
           onClick={() => setTheme("dark")}
           className="light--theme"
           title="Dark Theme"
@@ -75,7 +76,8 @@ const Header = () => {
           <BsMoon className="moon" />
         </button>
       ) : (
-        <button type="button"
+        <button
+          type="button"
           onClick={() => setTheme("light")}
           className="dark--theme"
           title="Light Theme"
