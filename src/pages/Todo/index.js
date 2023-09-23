@@ -14,48 +14,45 @@ const Todo = () => {
   const [filter, setFilter] = useState("All");
   const [newTask, setNewTask] = useState(false);
   const [pomodoros, setPomodoros] = useState(1);
+  
 
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://650d41c5a8b42265ec2be909.mockapi.io/todos');
-        const todos = response.data.map((todo) => ({
-          ...todo,
-          id: JSON.parse(todo.id),
-      
-        }));
-        setTodos(todos);
+        const response = await axios.get(
+          "https://650d41c5a8b42265ec2be909.mockapi.io/todos/"
+        );
+
+        setTodos(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-   fetchData()
-   
+    fetchData();
+
     return () => {
-      window.removeEventListener('load', fetchData);
+      window.removeEventListener("load", fetchData);
     };
   }, []);
-    
+
 
   const classTodoPage =
     theme === "light"
       ? "todo__page todo__page-light"
       : "todo__page todo__page-dark";
   // hàm xử lí khi input checkbox có sự thay đổi
-  const handleCheckboxChange = (id) => {
+  const handleCheckboxChange = async (id) => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
         todo = { ...todo, isCompleted: !todo.isCompleted };
+        axios.put(`https://650d41c5a8b42265ec2be909.mockapi.io/todos/${id}`, todo)
       }
-
-      return todo;
+      return todo
     });
-    const movedTodo = updatedTodos.find((todo) => todo.id === id);
-    const remainingTodos = updatedTodos.filter((todo) => todo.id !== id);
-    setTodos([...remainingTodos, movedTodo]);
+    setTodos(updatedTodos);
   };
 
   //event value input
@@ -70,39 +67,23 @@ const Todo = () => {
 
     const todo = {
       id: todos.length + 1,
+      key: todos.length + 1,
       todo: newTodo,
       isCompleted: false,
       estPomodoros: pomodoros,
     };
     axios.post('https://650d41c5a8b42265ec2be909.mockapi.io/todos', todo)
-    .then(response => {
-      const newTodo = response.data
-      setTodos([...todos, newTodo]); 
-    })
-    .catch(error => {
-      console.error(error);
-      // Xử lý lỗi nếu có
-    });
+    setTodos([...todos, todo]);
     setNewTodo("");
     setNewTask(false);
     setPomodoros(1);
-    
   };
   // delete todo
   const handleDeleteTodo = (todoId) => {
-    // const updatedTodos = todos.filter((todo) => todo.id !== todoId);
-    axios.delete(`https://650d41c5a8b42265ec2be909.mockapi.io/todos/${todoId}`)
-      .then(response => {
-  
+   
         const updatedTodos = todos.filter((todo) => todo.id !== todoId);
-        setTodos(updatedTodos)// Gọi hàm xóa todo trong component cha
-      })
-      .catch(error => {
-        console.error(error);
-        // Xử lý lỗi nếu có
-      });
-    
-
+        setTodos(updatedTodos); 
+        axios.delete(`https://650d41c5a8b42265ec2be909.mockapi.io/todos/${todoId}`)
   };
   // filter todo
   const filterTodos = () => {
@@ -114,6 +95,7 @@ const Todo = () => {
       return todos.filter((todo) => todo.todo);
     }
   };
+  
 
   return (
     <div className={classTodoPage}>
@@ -135,6 +117,7 @@ const Todo = () => {
         setFilter={setFilter}
       />
       <TodoFooter dataTodos={todos} filter={filter} />
+      
     </div>
   );
 };

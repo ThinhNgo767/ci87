@@ -3,6 +3,8 @@ import ThemeContext from "../../../../contexts/ThemeContext";
 
 import { useState } from "react";
 import { useContext } from "react";
+import axios from "axios";
+
 import {
   BsPencilSquare,
   BsCheckCircleFill,
@@ -33,11 +35,13 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
     ? "competed competed-light competed-dark"
     : "";
 
-  const handleUpdateTodo = () => {
+  const handleUpdateTodo = (id) => {
     dataTodos.todo = todoText;
     setTodoText(dataTodos.todo);
     setIsEditing(false);
     dataTodos.estPomodoros = pomodoros;
+    axios.put(`https://650d41c5a8b42265ec2be909.mockapi.io/todos/${id}`, dataTodos)
+    
   };
 
   const increase = () => {
@@ -111,7 +115,7 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
               <button
                 type="button"
                 className="todo-item_save"
-                onClick={() => handleUpdateTodo()}
+                onClick={() => handleUpdateTodo(id)}
               >
                 Save
               </button>
