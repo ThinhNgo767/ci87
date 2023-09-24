@@ -2,21 +2,29 @@ import "./style.css"
 import TodoFooter from "./component/TodoFooter";
 import TodoHeader from "./component/TodoHeader";
 import TodoList from "./component/TodoList";
-import { TODOS } from "../../data/todos";
+
 import ThemeContext from "../../contexts/ThemeContext";
 
 import { useState , useContext} from "react";
-
+import axios from "axios";
 
 const Todo = () => {
   // Khai báo state
-  const [todos, setTodos] = useState(TODOS);
+  const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
   const [filter, setFilter] = useState("All");
   const [newTask, setNewTask] = useState(false);
   const [pomodoros, setPomodoros] = useState(1);
   
   const {theme} = useContext(ThemeContext)
+
+  const handleFetchTodos = async () => {
+    
+    const response = await axios.get(
+      "https://650c557a47af3fd22f677e3f.mockapi.io/todos"
+    );
+    setTodos(response.data);
+  };
 
   const classTodoPage = theme === "light" ?"todo__page todo__page-light":"todo__page todo__page-dark"
   // hàm xử lí khi input checkbox có sự thay đổi
