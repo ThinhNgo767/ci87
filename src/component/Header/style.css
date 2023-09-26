@@ -86,7 +86,7 @@ button.light--theme {
     gap: 0.5rem;
   }
   button.dark--theme, button.light--theme {
-    margin-right: 1rem;
+    margin-right: 2rem;
   }
   .navigator a {
     font-size: 1rem;
