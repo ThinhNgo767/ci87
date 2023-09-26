@@ -5,9 +5,10 @@ import TodoList from "./component/TodoList";
 import ThemeContext from "../../contexts/ThemeContext";
 
 import { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
-const Todo = () => {
+const Todo = ({isLoggedIn}) => {
   // Khai báo state
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
@@ -30,14 +31,8 @@ const Todo = () => {
         console.error(error);
       }
     };
-
     fetchData();
-
-    return () => {
-      window.removeEventListener("load", fetchData);
-    };
   }, []);
-
 
   const classTodoPage =
     theme === "light"
@@ -48,9 +43,12 @@ const Todo = () => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
         todo = { ...todo, isCompleted: !todo.isCompleted };
-        axios.put(`https://650d41c5a8b42265ec2be909.mockapi.io/todos/${id}`, todo)
+        axios.put(
+          `https://650d41c5a8b42265ec2be909.mockapi.io/todos/${id}`,
+          todo
+        );
       }
-      return todo
+      return todo;
     });
     setTodos(updatedTodos);
   };
@@ -72,7 +70,7 @@ const Todo = () => {
       isCompleted: false,
       estPomodoros: pomodoros,
     };
-    axios.post('https://650d41c5a8b42265ec2be909.mockapi.io/todos', todo)
+    axios.post("https://650d41c5a8b42265ec2be909.mockapi.io/todos", todo);
     setTodos([...todos, todo]);
     setNewTodo("");
     setNewTask(false);
@@ -80,10 +78,9 @@ const Todo = () => {
   };
   // delete todo
   const handleDeleteTodo = (todoId) => {
-   
-        const updatedTodos = todos.filter((todo) => todo.id !== todoId);
-        setTodos(updatedTodos); 
-        axios.delete(`https://650d41c5a8b42265ec2be909.mockapi.io/todos/${todoId}`)
+    const updatedTodos = todos.filter((todo) => todo.id !== todoId);
+    setTodos(updatedTodos);
+    axios.delete(`https://650d41c5a8b42265ec2be909.mockapi.io/todos/${todoId}`);
   };
   // filter todo
   const filterTodos = () => {
@@ -95,11 +92,12 @@ const Todo = () => {
       return todos.filter((todo) => todo.todo);
     }
   };
-  
 
   return (
     <div className={classTodoPage}>
-      <TodoHeader
+      {isLoggedIn ?(
+        <>
+        <TodoHeader
         handleInputChange={handleInputChange}
         handleAddTodo={handleAddTodo}
         newTodo={newTodo}
@@ -115,8 +113,13 @@ const Todo = () => {
         filterTodos={filterTodos}
         filter={filter}
         setFilter={setFilter}
+        isLoggedIn={isLoggedIn}
       />
       <TodoFooter dataTodos={todos} filter={filter} />
+      </>
+      ):(<>
+      <div>Vui lòng <Link to="/sign-in" className="link_todo"><strong>Login</strong></Link> để sử dụng dịch vụ này</div>
+      </>)}
       
     </div>
   );

@@ -1,4 +1,5 @@
 import avatarCrazy from "../../image/avatar/crazy_code.jpg";
+import avatarDark from "../../image/avatar/avatar-dark.jpg";
 import "./style.css";
 import ThemeContext from "../../../../contexts/ThemeContext";
 
@@ -24,7 +25,7 @@ const Information = ({ data }) => {
       <div className="avatar_user">
         <img
           className="info_image image-light image-dark"
-          src={avatarCrazy}
+          src={theme === "light" ?avatarCrazy : avatarDark}
           alt={`Avatar for ${data.name}`}
         ></img>
       </div>

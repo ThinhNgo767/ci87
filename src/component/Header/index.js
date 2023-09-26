@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { BsSun, BsMoon } from "react-icons/bs";
 
-const Header = () => {
+const Header = ({isLoggedIn}) => {
   const { theme, setTheme } = useContext(ThemeContext);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -60,9 +60,17 @@ const Header = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/profile" className={activeClass}>
-            Profile
+          <NavLink to="/about" className={activeClass}>
+          About
           </NavLink>
+        </li>
+        <li>
+          {!isLoggedIn ? <NavLink to="/sign-in" className={activeClass}>
+            Login
+          </NavLink> : <NavLink to="/sign-in" className={activeClass}>
+            Profile
+          </NavLink>}
+          
         </li>
       </ul>
       {theme === "light" ? (

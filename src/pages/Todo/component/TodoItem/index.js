@@ -22,7 +22,7 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
   const styleCompleted = isCompleted
     ? theme === "light"
       ? { color: "#087EA4" }
-      : { color: "#A6A6A6" }
+      : { color: "#149ECA" }
     : theme === "light"
     ? { color: "#404756" }
     :{ color: "#F6F7F9" } ;

@@ -80,9 +80,15 @@ button.light--theme {
 }
 @media only screen and (max-width: 480px) {
   .header {
-    gap: 3rem;
+    gap: 1.5rem;
   }
   .header ul {
     gap: 0.5rem;
+  }
+  button.dark--theme, button.light--theme {
+    margin-right: 1rem;
+  }
+  .navigator a {
+    font-size: 1rem;
   }
 }

@@ -14,7 +14,7 @@ const dataUser =
     email: "thinhngo767@gmail.com",
   }
 
-const Profile = () => {
+const About = () => {
   return (
     <div className="profile">
       <Information data={dataUser} />
@@ -22,4 +22,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default About;

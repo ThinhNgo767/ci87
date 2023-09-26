@@ -66,9 +66,7 @@ const TodoList = ({
       </div>
       <h4 className="taks-list taks-list--light taks-list--dark"><BsListUl className="filter_icon"/>Todo task</h4>
       {filterTodos().map((todo) => (
-  
         <TodoItem
-
           key={todo.key}
           dataTodos={todo}
           todoCompleted={todoCompleted}
