@@ -7,32 +7,47 @@ import ThemeContext from "../../contexts/ThemeContext";
 import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
-const Todo = ({isLoggedIn}) => {
+const Todo = ({ isLoggedIn }) => {
   // Khai báo state
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
   const [filter, setFilter] = useState("All");
   const [newTask, setNewTask] = useState(false);
   const [pomodoros, setPomodoros] = useState(1);
-  
-
+  const [idUser, setIdUser] = useState("");
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const handleFetchUser = () => {
+      const userCookie = Cookies.get("user");
+      let infoUser;
+      if (userCookie) {
+        infoUser = JSON.parse(userCookie);
+      }
+      setIdUser(infoUser.id);
+    };
+    handleFetchUser();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async (id) => {
       try {
         const response = await axios.get(
-          "https://650d41c5a8b42265ec2be909.mockapi.io/todos/"
+          `https://650d41c5a8b42265ec2be909.mockapi.io/user/`
         );
-
-        setTodos(response.data);
+        const userLogin = response.data.find((user) => user.id === id);
+        if (userLogin) {
+          setTodos(userLogin.todoTask);
+        }
       } catch (error) {
         console.error(error);
       }
     };
-    fetchData();
-  }, []);
+
+    fetchData(idUser);
+  }, [idUser]);
 
   const classTodoPage =
     theme === "light"
@@ -40,17 +55,35 @@ const Todo = ({isLoggedIn}) => {
       : "todo__page todo__page-dark";
   // hàm xử lí khi input checkbox có sự thay đổi
   const handleCheckboxChange = async (id) => {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        todo = { ...todo, isCompleted: !todo.isCompleted };
-        axios.put(
-          `https://650d41c5a8b42265ec2be909.mockapi.io/todos/${id}`,
-          todo
-        );
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
+    axios
+      .get(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${idUser}`)
+      .then((response) => {
+        const userTask = response.data.todoTask;
+
+        const updatedTodos = userTask.map((todo) => {
+          if (todo.id === id) {
+            todo = { ...todo, isCompleted: !todo.isCompleted };
+          }
+          return todo;
+        });
+
+        setTodos(updatedTodos);
+
+        axios
+          .put(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${idUser}`, {
+            todoTask: updatedTodos,
+          })
+          .then((response) => {
+            console.log("Cập nhật nhiệm vụ thành công.");
+          })
+          .catch((error) => {
+            console.error("Lỗi khi cập nhật nhiệm vụ:", error);
+          });
+        
+      })
+      .catch((error) => {
+        console.error("Lỗi khi lấy danh sách người dùng:", error);
+      });
   };
 
   //event value input
@@ -58,6 +91,7 @@ const Todo = ({isLoggedIn}) => {
     setNewTodo(e.target.value);
   };
   // newtodo
+
   const handleAddTodo = () => {
     if (newTodo.trim() === "") {
       return;
@@ -70,7 +104,29 @@ const Todo = ({isLoggedIn}) => {
       isCompleted: false,
       estPomodoros: pomodoros,
     };
-    axios.post("https://650d41c5a8b42265ec2be909.mockapi.io/todos", todo);
+    //
+    axios
+      .get(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${idUser}`)
+      .then((response) => {
+        const users = response.data;
+        users.todoTask.push(todo);
+        // Cập nhật danh sách todoTask mới lên API
+        axios
+          .put(
+            `https://650d41c5a8b42265ec2be909.mockapi.io/user/${idUser}`,
+            users
+          )
+          .then((response) => {
+            console.log("Thêm nhiệm vụ thành công.");
+          })
+          .catch((error) => {
+            console.error("Lỗi khi cập nhật danh sách todoTask:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Lỗi khi lấy danh sách người dùng:", error);
+      });
+
     setTodos([...todos, todo]);
     setNewTodo("");
     setNewTask(false);
@@ -78,9 +134,34 @@ const Todo = ({isLoggedIn}) => {
   };
   // delete todo
   const handleDeleteTodo = (todoId) => {
-    const updatedTodos = todos.filter((todo) => todo.id !== todoId);
-    setTodos(updatedTodos);
-    axios.delete(`https://650d41c5a8b42265ec2be909.mockapi.io/todos/${todoId}`);
+    axios
+      .get(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${idUser}`)
+      .then((response) => {
+        const usersTaks = response.data.todoTask;
+        const todoIndex = usersTaks.findIndex((todo) => todo.id === todoId);
+
+        if (todoIndex !== -1) {
+          usersTaks.splice(todoIndex, 1);
+
+          axios
+            .put(
+              `https://650d41c5a8b42265ec2be909.mockapi.io/user/${idUser}/`,
+              response.data
+            )
+            .then((response) => {
+              console.log("Xóa nhiệm vụ thành công.");
+            })
+            .catch((error) => {
+              console.error("Lỗi khi cập nhật danh sách todoTask:", error);
+            });
+        }
+
+        setTodos(usersTaks);
+      })
+      .catch((error) => {
+        console.error("Lỗi khi lấy danh sách người dùng:", error);
+      });
+
   };
   // filter todo
   const filterTodos = () => {
@@ -95,32 +176,40 @@ const Todo = ({isLoggedIn}) => {
 
   return (
     <div className={classTodoPage}>
-      {isLoggedIn ?(
+      {isLoggedIn ? (
         <>
-        <TodoHeader
-        handleInputChange={handleInputChange}
-        handleAddTodo={handleAddTodo}
-        newTodo={newTodo}
-        newTask={newTask}
-        setNewTask={setNewTask}
-        pomodoros={pomodoros}
-        setPomodoros={setPomodoros}
-      />
-      <TodoList
-        dataTodos={todos}
-        todoCompleted={handleCheckboxChange}
-        handleDeleteTodo={handleDeleteTodo}
-        filterTodos={filterTodos}
-        filter={filter}
-        setFilter={setFilter}
-        isLoggedIn={isLoggedIn}
-      />
-      <TodoFooter dataTodos={todos} filter={filter} />
-      </>
-      ):(<>
-      <div>Vui lòng <Link to="/sign-in" className="link_todo"><strong>Login</strong></Link> để sử dụng dịch vụ này</div>
-      </>)}
-      
+          <TodoHeader
+            handleInputChange={handleInputChange}
+            handleAddTodo={handleAddTodo}
+            newTodo={newTodo}
+            newTask={newTask}
+            setNewTask={setNewTask}
+            pomodoros={pomodoros}
+            setPomodoros={setPomodoros}
+          />
+          <TodoList
+            dataTodos={todos}
+            todoCompleted={handleCheckboxChange}
+            handleDeleteTodo={handleDeleteTodo}
+            filterTodos={filterTodos}
+            filter={filter}
+            setFilter={setFilter}
+            isLoggedIn={isLoggedIn}
+            idUser={idUser}
+          />
+          <TodoFooter dataTodos={todos} filter={filter} />
+        </>
+      ) : (
+        <>
+          <div>
+            Vui lòng{" "}
+            <Link to="/sign-in" className="link_todo">
+              <strong>Login</strong>
+            </Link>{" "}
+            để sử dụng dịch vụ này
+          </div>
+        </>
+      )}
     </div>
   );
 };

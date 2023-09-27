@@ -1,52 +1,117 @@
-.login-form{
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.sign-in input {
+  width: 15rem;
+  height: 2rem;
+  font-size: 1rem;
+  padding-left: 0.25rem;
+}
+.sign-in button {
+  width: 15rem;
+  height: 2rem;
+  font-size: 1rem;
+}
+.sign-in .user_islogin {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+.sign-in .user_islogin--light {
+  color: #23272f;
+}
+.sign-in .user_islogin--dark {
+  color: #f6f7f9;
+}
+.sign-in .user_islogin img {
+  width: 25rem;
+  height: 26rem;
+  border-radius: 5px;
+}
+.item-img {
+  height: 100%;
+}
+.sign-in .item-info {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+}
+.btn-logout {
+  margin-top: 5.5rem;
+}
+button.button-setting {
+  width: fit-content;
+  font-size: 0.9rem;
+  height: fit-content;
+  color: #087ea4;
+  border: 1px solid #087ea4;
+  background-color: transparent;
+  border-radius: 3px;
+  position: absolute;
+  left: 28rem;
+    top: 3rem;
+}
+.edit-user{
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    justify-content: flex-start;
+    align-items: self-end;
+    gap: 1rem;
 }
-.sign-in input{
-    width: 15rem;
-    height: 2rem;
-    font-size: 1rem;
-    padding-left: 0.25rem;
-}
-.sign-in button{
-    width: 15rem;
-    height: 2rem;
-    font-size: 1rem;
-}
-.sign-in .user_islogin{
+.edit-intro{
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    align-items: center;
-    gap :1rem
 }
-.sign-in .user_islogin img{
-    width: 25rem;
-    height: 26rem;
+#user-intro{
+    width: 30vw;
+    height: 8rem;
+    font-family: 'Roboto', sans-serif;
 }
-.item-img{
-    height: 100%;
+button.user-btn-cancel,button.user-btn-update{
+    width: 5rem;
+    max-height: fit-content;
+    padding: 0.25rem;
+    
 }
-.sign-in .item-info{
-    width: 60%;
+.button-user{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 3rem;
+    width: 100%;
 }
-.btn-logout{
-    margin-top: 5.5rem;
+.edit-user input {
+    width: 30vw;
 }
-@media only screen and (max-width: 480px){
-    .sign-in .item-info{
-        flex-direction: column;
-    } 
-    .sign-in .user_islogin img {
-        width: 15rem;
-        height: 15rem;
-    }
-    .btn-logout{
-        margin-top: 3rem;
-    }
+.edit-user label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-weight: 600;
+}
+@media only screen and (max-width: 480px) {
+  .sign-in .item-info {
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .sign-in .user_islogin img {
+    width: 15rem;
+    height: 15rem;
+  }
+  .btn-logout {
+    margin-top: 3rem;
+  }
+  button.button-setting{
+    right: 5.5rem;
+    top: 1rem;
+  }
+  .edit-user input,#user-intro{
+width: 80vw;
+  }
 }

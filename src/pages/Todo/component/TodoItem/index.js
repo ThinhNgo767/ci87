@@ -12,7 +12,7 @@ import {
   BsCaretDownFill,
 } from "react-icons/bs";
 
-const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
+const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo, idUser }) => {
   const { id, todo, isCompleted, estPomodoros } = dataTodos;
   const [isEditing, setIsEditing] = useState(false);
   const [todoText, setTodoText] = useState(todo);
@@ -25,7 +25,7 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
       : { color: "#149ECA" }
     : theme === "light"
     ? { color: "#404756" }
-    :{ color: "#F6F7F9" } ;
+    : { color: "#F6F7F9" };
 
   const classNameTaks =
     theme === "light"
@@ -36,12 +36,38 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo }) => {
     : "";
 
   const handleUpdateTodo = (id) => {
-    dataTodos.todo = todoText;
-    setTodoText(dataTodos.todo);
-    setIsEditing(false);
-    dataTodos.estPomodoros = pomodoros;
-    axios.put(`https://650d41c5a8b42265ec2be909.mockapi.io/todos/${id}`, dataTodos)
-    
+    axios
+      .get(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${idUser}`)
+      .then((response) => {
+        const userTask = response.data.todoTask;
+
+        const updatedTodos = userTask.map((todo) => {
+          if (todo.id === id) {
+            todo.todo = todoText;
+            todo.estPomodoros = pomodoros;
+            setTodoText(todo.todo);
+            setIsEditing(false);
+          }
+          return todo;
+        });
+
+        
+
+        axios
+          .put(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${idUser}`, {
+            todoTask: updatedTodos,
+          })
+          .then((response) => {
+            console.log("Cập nhật nhiệm vụ thành công.");
+          })
+          .catch((error) => {
+            console.error("Lỗi khi cập nhật nhiệm vụ:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Lỗi khi lấy danh sách người dùng:", error);
+      });
+
   };
 
   const increase = () => {

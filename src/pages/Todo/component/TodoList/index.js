@@ -9,7 +9,7 @@ const TodoList = ({
   todoCompleted,
   handleDeleteTodo,
   filterTodos,filter,
-  setFilter,
+  setFilter,idUser
 }) => {
   const { theme } = useContext(ThemeContext);
   
@@ -71,6 +71,7 @@ const TodoList = ({
           dataTodos={todo}
           todoCompleted={todoCompleted}
           handleDeleteTodo={handleDeleteTodo}
+          idUser={idUser}
         />
       ))}
     </div>

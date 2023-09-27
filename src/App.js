@@ -10,11 +10,12 @@ import Error from "./pages/Error";
 import ThemeContext from "./contexts/ThemeContext";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function App() {
+  const user = !!Cookies.get("token");
   const [theme, setTheme] = useState("light");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(user);
 
   const appClassName =
     theme === "light"
@@ -31,10 +32,10 @@ function App() {
   return (
     <div className={appClassName}>
       <ThemeContext.Provider value={{ theme: theme, setTheme: setTheme }}>
-        <Header isLoggedIn={isLoggedIn}/>
+        <Header isLoggedIn={isLoggedIn} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/todo" element={<Todo isLoggedIn={isLoggedIn}/>} />
+          <Route path="/todo" element={<Todo isLoggedIn={isLoggedIn} />} />
           <Route path="/about" element={<About />} />
           <Route
             path="/sign-in"
@@ -42,9 +43,7 @@ function App() {
               <SignIn
                 onLoggedIn={handleLoggin}
                 onLoggout={handleLoggout}
-                setUserData={setUserData}
                 isLoggedIn={isLoggedIn}
-                userData={userData}
               />
             }
           />
