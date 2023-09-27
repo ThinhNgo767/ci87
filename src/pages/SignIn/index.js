@@ -83,7 +83,7 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
     try {
     const currentUser = await axios.get(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${user.id}`)
     const updatedUser = { ...currentUser.data, ...userUpdate };
-    const response = await axios.put(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${user.id}`,updatedUser);
+    axios.put(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${user.id}`,updatedUser);
     Cookies.set("user", JSON.stringify(updatedUser));
     console.log("Cập nhật thông tin người dùng thành công.");
   } catch (error) {
