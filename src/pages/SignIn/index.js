@@ -13,19 +13,19 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
   } else {
     user = [];
   }
-  const { avatar, fullName, age, major, address, intro } = user;
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [edit, setEdit] = useState(false);
+  
   //
-  const [editAvatar, setEditAvatar] = useState(avatar);
-  const [editName, setEditName] = useState(fullName);
-  const [editAge, setEditAge] = useState(age);
-  const [editMajor, setEditMajor] = useState(major);
-  const [editAddress, setEditAddress] = useState(address);
-  const [editIntro, setEditIntro] = useState(intro);
+  const [editAvatar, setEditAvatar] = useState("");
+  const [editName, setEditName] = useState("");
+  const [editAge, setEditAge] = useState("");
+  const [editMajor, setEditMajor] = useState("");
+  const [editAddress, setEditAddress] = useState("");
+  const [editIntro, setEditIntro] = useState("");
 
   const { theme } = useContext(ThemeContext);
 
@@ -68,10 +68,33 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
     onLoggout();
     // setUserData(null);
     setError("");
+    
+  };
+
+  const handleEdit = async (id) => {
+    try {
+      // Gửi yêu cầu đăng nhập lên API và nhận dữ liệu người dùng
+      const response = await axios.get(
+        ` https://650d41c5a8b42265ec2be909.mockapi.io/user/${id}`
+      );
+      
+      const { avatar, fullName, age, major, address, intro } = response.data;
+
+      setEdit(true);
+      setEditAvatar(avatar);
+      setEditName(fullName);
+      setEditAge(age);
+      setEditMajor(major);
+      setEditAddress(address);
+      setEditIntro(intro);
+      // Xử lý phản hồi từ API
+    } catch (error) {
+      setError("Đã xảy ra lỗi khi gửi yêu cầu");
+    }
   };
 
   const handleUpdate = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const userUpdate = {
       avatar: editAvatar,
       fullName: editName,
@@ -81,16 +104,20 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
       intro: editIntro,
     };
     try {
-    const currentUser = await axios.get(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${user.id}`)
-    const updatedUser = { ...currentUser.data, ...userUpdate };
-    axios.put(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${user.id}`,updatedUser);
-    Cookies.set("user", JSON.stringify(updatedUser));
-    console.log("Cập nhật thông tin người dùng thành công.");
-  } catch (error) {
-    console.error("Lỗi khi cập nhật thông tin người dùng:", error);
-  }
-  setEdit(false);
-   
+      const currentUser = await axios.get(
+        `https://650d41c5a8b42265ec2be909.mockapi.io/user/${user.id}`
+      );
+      const updatedUser = { ...currentUser.data, ...userUpdate };
+      axios.put(
+        `https://650d41c5a8b42265ec2be909.mockapi.io/user/${user.id}`,
+        updatedUser
+      );
+      Cookies.set("user", JSON.stringify(updatedUser));
+      console.log("Cập nhật thông tin người dùng thành công.");
+    } catch (error) {
+      console.error("Lỗi khi cập nhật thông tin người dùng:", error);
+    }
+    setEdit(false);
   };
 
   const handleKeyPress = (e) => {
@@ -157,18 +184,34 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
                 />
               </label>
               <div className="edit-intro">
-                <label htmlFor="user-intro">Lời giới thiệu <textarea
-                  title="intro"
-                  id="user-intro"
-                  value={editIntro}
-                  onChange={(e) => setEditIntro(e.target.value)}
-                ></textarea></label>
-                
+                <label htmlFor="user-intro">
+                  Lời giới thiệu{" "}
+                  <textarea
+                    title="intro"
+                    id="user-intro"
+                    value={editIntro}
+                    onChange={(e) => setEditIntro(e.target.value)}
+                  ></textarea>
+                </label>
               </div>
 
               <div className="button-user">
-                <button type="button" onClick={() => setEdit(false)} title="cancel" className="user-btn-cancel">CANCEL</button>
-                <button type="button" onClick={handleUpdate} title="update" className="user-btn-update">UPDATE</button>
+                <button
+                  type="button"
+                  onClick={() => setEdit(false)}
+                  title="cancel"
+                  className="user-btn-cancel"
+                >
+                  CANCEL
+                </button>
+                <button
+                  type="button"
+                  onClick={handleUpdate}
+                  title="update"
+                  className="user-btn-update"
+                >
+                  UPDATE
+                </button>
               </div>
             </form>
           ) : (
@@ -176,7 +219,12 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
               <p>
                 Chào mừng <b>{user.userName}</b> đã đăng nhập
               </p>
-              <button type="button" className="button-setting" onClick={() => setEdit(true)} title="edit">
+              <button
+                type="button"
+                className="button-setting"
+                onClick={() => handleEdit(user.id)}
+                title="edit"
+              >
                 edit
               </button>
               <div className="item-info">

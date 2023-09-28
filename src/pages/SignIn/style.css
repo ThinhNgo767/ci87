@@ -108,13 +108,13 @@ button.user-btn-cancel,button.user-btn-update{
     margin-top: 3rem;
   }
   button.button-setting{
-    left: 16rem;
-    top: 1rem;
+    left: 3rem;
+    top: 22.5rem;
   }
   .edit-user input,#user-intro{
 width: 80vw;
   }
-  .sign-in button{
-
+  .sign-in .user_islogin{
+text-align: center;
   }
 }
