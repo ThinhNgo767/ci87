@@ -25,7 +25,7 @@ const Todo = ({ isLoggedIn }) => {
       let infoUser;
       if (userCookie) {
         infoUser = JSON.parse(userCookie);
-      }
+      }else{infoUser = {}}
       setIdUser(infoUser.id);
     };
     handleFetchUser();
