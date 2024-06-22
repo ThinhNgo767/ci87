@@ -36,7 +36,7 @@
   height: 12rem;
   border-radius: 5px;
 }
-span.user_name{
+span.user_name {
   color: #087ea4;
 }
 .item-img {
@@ -55,7 +55,7 @@ span.user_name{
   width: 50%;
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   gap: 3rem;
 }
 
@@ -108,7 +108,7 @@ button.user-btn-update {
   max-height: fit-content;
   padding: 0.25rem;
 }
-button.user-btn-cancel{
+button.user-btn-cancel {
   color: #087ea4;
   background-color: transparent;
   border: 1px solid #087ea4;
@@ -146,7 +146,8 @@ button.user-btn-cancel{
 .sign-in fieldset {
   width: 36rem;
 }
-.footer-account,.button-user {
+.footer-account,
+.button-user {
   display: flex;
   justify-content: flex-start;
   align-items: end;
@@ -154,7 +155,7 @@ button.user-btn-cancel{
   width: 50%;
   padding-top: 2rem;
 }
-.button-user{
+.button-user {
   justify-content: flex-end;
 }
 @media only screen and (max-width: 480px) {

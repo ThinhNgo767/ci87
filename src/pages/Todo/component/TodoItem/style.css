@@ -1,5 +1,5 @@
 .todo__task {
-  text-align: start;
+  text-align: left;
   margin: 0.8rem 0;
   padding: 0.5rem;
   border-radius: 5px;
@@ -8,7 +8,6 @@
 .todo__task--light {
   background-color: #f3f4f6;
   box-shadow: 2px 2px 2px #999999;
- 
 }
 .todo__task p {
   font-size: 1rem;
@@ -22,7 +21,6 @@
 .todo__task--dark {
   background-color: #444b59;
   box-shadow: 2px 1px 5px #f0f1f4;
-  
 }
 .todo__task label {
   font-size: 1.3rem;
@@ -69,7 +67,7 @@
   color: #087ea4;
 }
 .todo__task--dark .task__item .competed-dark {
-  color: #149ECA;
+  color: #149eca;
 }
 .edit_todo-button {
   margin-left: 1rem;
@@ -145,5 +143,4 @@
   text-align: center;
   border: none;
   border-radius: 2px;
-
 }
