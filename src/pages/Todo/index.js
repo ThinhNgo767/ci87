@@ -25,6 +25,8 @@ const Todo = ({ isLoggedIn }) => {
       let infoUser;
       if (userCookie) {
         infoUser = JSON.parse(userCookie);
+      } else {
+        infoUser = {};
       }
       setIdUser(infoUser.id);
     };
@@ -40,6 +42,8 @@ const Todo = ({ isLoggedIn }) => {
         const userLogin = response.data.find((user) => user.id === id);
         if (userLogin) {
           setTodos(userLogin.todoTask);
+        } else {
+          setTodos([]);
         }
       } catch (error) {
         console.error(error);
