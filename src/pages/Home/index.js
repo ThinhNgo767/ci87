@@ -9,25 +9,29 @@ const Home = () => {
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
 
-const classHome =theme === "light"
-? "home home-light"
-: "home home-dark";
+  const classHome = theme === "light" ? "home home-light" : "home home-dark";
 
   return (
     <div className={classHome}>
+      <h3 className="home_intro home_intro-light home_intro-dark">
+        TODO APP ứng dụng quản lý nhiệm vụ đa nền tảng đích thực.
+      </h3>
       <p className="home_intro home_intro-light home_intro-dark">
-        Ứng dụng quản lý nhiệm vụ đa nền tảng đích thực. Dù bạn đang dùng ứng
-        dụng trên máy tính khi ở nhà hay ứng dụng dành cho thiết bị di động khi
-        di chuyển, bạn đều có thể truy nhập vào danh sách nhiệm vụ và luôn sắp
-        xếp mọi thứ khoa học, những đề xuất thông minh và được cá nhân hóa để cập
-        nhật danh sách việc cần làm hàng ngày hoặc hàng tuần của bạn.
+        Dù bạn đang dùng ứng dụng trên máy tính khi ở nhà hay ứng dụng dành cho
+        thiết bị di động khi di chuyển, bạn đều có thể truy nhập vào danh sách
+        nhiệm vụ và luôn sắp xếp mọi thứ khoa học, những đề xuất thông minh và
+        được cá nhân hóa để cập nhật danh sách việc cần làm hàng ngày hoặc hàng
+        tuần của bạn.
       </p>
-      <BsListCheck className="circle-style"/>
-      
+      <BsListCheck className="circle-style" />
+
       <h1 className="home_title home_title-light home_title-dark">
-        Welcome to the Todo app</h1>
-      <button type="button"
-        className="get_todo" title="get todo app"
+        Welcome to the Todo app
+      </h1>
+      <button
+        type="button"
+        className="get_todo"
+        title="get todo app"
         onClick={() => {
           navigate("/todo");
         }}

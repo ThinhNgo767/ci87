@@ -13,9 +13,10 @@ import { Routes, Route } from "react-router-dom";
 import Cookies from "js-cookie";
 
 function App() {
-  const user = !!Cookies.get("token");
+  const checkLogin = !!Cookies.get("token");
+
   const [theme, setTheme] = useState("light");
-  const [isLoggedIn, setIsLoggedIn] = useState(user);
+  const [isLoggedIn, setIsLoggedIn] = useState(checkLogin);
 
   const appClassName =
     theme === "light"

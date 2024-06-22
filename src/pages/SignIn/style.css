@@ -1,3 +1,6 @@
+.sign-in {
+  min-width: 80%;
+}
 .login-form {
   display: flex;
   flex-direction: column;
@@ -29,70 +32,130 @@
   color: #f6f7f9;
 }
 .sign-in .user_islogin img {
-  width: 25rem;
-  height: 26rem;
+  width: 12rem;
+  height: 12rem;
   border-radius: 5px;
 }
+span.user_name{
+  color: #087ea4;
+}
 .item-img {
+  width: 40%;
   height: 100%;
 }
-.sign-in .item-info {
+.item-infomation {
   width: 60%;
   display: flex;
+  flex-direction: column;
+  align-self: flex-start;
   justify-content: space-between;
-  align-items: center;
+  gap: 1.2rem;
+}
+.sign-in .item-info {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
   gap: 3rem;
 }
-.btn-logout {
-  margin-top: 5.5rem;
+
+.btn-logout:hover {
+  background-color: transparent;
+  color: #087ea4;
+  border: 1px solid #087ea4;
 }
 button.button-setting {
-  width: fit-content;
+  width: 8rem;
+  height: 2rem;
   font-size: 0.9rem;
-  height: fit-content;
+  text-transform: uppercase;
   color: #087ea4;
   border: 1px solid #087ea4;
   background-color: transparent;
-  border-radius: 3px;
-  position: absolute;
-  left: 28rem;
-    top: 3rem;
 }
-.edit-user{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: self-end;
-    gap: 1rem;
+button.button-setting:hover {
+  background-color: #087ea4;
+  color: #f6f7f9;
 }
-.edit-intro{
-    display: flex;
-    flex-direction: column;
+.edit-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: self-end;
+  gap: 1rem;
 }
-#user-intro{
-    width: 30vw;
-    height: 8rem;
-    font-family: 'Roboto', sans-serif;
+.edit-intro {
+  display: flex;
+  flex-direction: column;
 }
-button.user-btn-cancel,button.user-btn-update{
-    width: 5rem;
-    max-height: fit-content;
-    padding: 0.25rem;
-    
+#user-intro {
+  width: 100%;
+  height: fit-content;
+  font-family: "Roboto", sans-serif;
+  border: none;
+  background: #f3f4f6;
+  resize: none;
+  color: #087ea4;
 }
-.button-user{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+#user-intro:focus {
+  outline: none;
+  color: #23272f;
+  font-weight: 600;
+}
+button.user-btn-cancel,
+button.user-btn-update {
+  width: 5rem;
+  max-height: fit-content;
+  padding: 0.25rem;
+}
+button.user-btn-cancel{
+  color: #087ea4;
+  background-color: transparent;
+  border: 1px solid #087ea4;
 }
 .edit-user input {
-    width: 30vw;
+  width: 30vw;
 }
 .edit-user label {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-weight: 600;
+}
+.sign-in .item-infomation .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sign-in .item-infomation .item p {
+  margin: 0.25rem;
+}
+.sign-in .item-infomation input {
+  width: fit-content;
+  height: fit-content;
+  padding-left: 0.25rem;
+  background-color: #f3f4f6;
+  border: none;
+  color: #087ea4;
+  border-radius: 0.25rem;
+  outline: none;
+}
+.sign-in .item-infomation input:focus {
+  outline: 1px solid #087ea4;
+}
+.sign-in fieldset {
+  width: 36rem;
+}
+.footer-account,.button-user {
+  display: flex;
+  justify-content: flex-start;
+  align-items: end;
+  gap: 2rem;
+  width: 50%;
+  padding-top: 2rem;
+}
+.button-user{
+  justify-content: flex-end;
 }
 @media only screen and (max-width: 480px) {
   .sign-in .item-info {
@@ -107,14 +170,15 @@ button.user-btn-cancel,button.user-btn-update{
   .btn-logout {
     margin-top: 3rem;
   }
-  button.button-setting{
+  button.button-setting {
     left: 3rem;
     top: 22.5rem;
   }
-  .edit-user input,#user-intro{
-width: 80vw;
+  .edit-user input,
+  #user-intro {
+    width: 80vw;
   }
-  .sign-in .user_islogin{
-text-align: center;
+  .sign-in .user_islogin {
+    text-align: center;
   }
 }

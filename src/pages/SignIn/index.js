@@ -18,7 +18,7 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [edit, setEdit] = useState(false);
-  
+
   //
   const [editAvatar, setEditAvatar] = useState("");
   const [editName, setEditName] = useState("");
@@ -36,7 +36,7 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
     try {
       // Gửi yêu cầu đăng nhập lên API và nhận dữ liệu người dùng
       const response = await axios.get(
-        "https://650d41c5a8b42265ec2be909.mockapi.io/user?fields=username,password"
+        "https://650d41c5a8b42265ec2be909.mockapi.io/user"
       );
       const users = response.data;
       const isUser = users.find((user) => {
@@ -68,7 +68,6 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
     onLoggout();
     // setUserData(null);
     setError("");
-    
   };
 
   const handleEdit = async (id) => {
@@ -77,7 +76,7 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
       const response = await axios.get(
         ` https://650d41c5a8b42265ec2be909.mockapi.io/user/${id}`
       );
-      
+
       const { avatar, fullName, age, major, address, intro } = response.data;
 
       setEdit(true);
@@ -113,7 +112,6 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
         updatedUser
       );
       Cookies.set("user", JSON.stringify(updatedUser));
-      console.log("Cập nhật thông tin người dùng thành công.");
     } catch (error) {
       console.error("Lỗi khi cập nhật thông tin người dùng:", error);
     }
@@ -136,65 +134,91 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
     <div className="sign-in">
       {isLoggedIn ? (
         <div className={classUserLogin}>
-          {edit ? (
-            <form className="edit-user">
-              <label htmlFor="avatar">
-                Avatar :{" "}
-                <input
-                  type="text"
-                  id="avatar"
-                  value={editAvatar}
-                  onChange={(e) => setEditAvatar(e.target.value)}
-                />
-              </label>
-              <label htmlFor="full-name">
-                Họ và Tên :{" "}
-                <input
-                  type="text"
-                  id="full-name"
-                  value={editName}
-                  onChange={(e) => setEditName(e.target.value)}
-                />
-              </label>
-              <label htmlFor="user-age">
-                Tuổi :{" "}
-                <input
-                  type="number"
-                  id="user-age"
-                  value={editAge}
-                  onChange={(e) => setEditAge(e.target.value)}
-                />
-              </label>
-              <label htmlFor="user-major">
-                Nghề nghiệp :{" "}
-                <input
-                  type="text"
-                  id="user-major"
-                  value={editMajor}
-                  onChange={(e) => setEditMajor(e.target.value)}
-                />
-              </label>
-              <label htmlFor="user-address">
-                Địa chỉ :{" "}
-                <input
-                  type="text"
-                  id="user-address"
-                  value={editAddress}
-                  onChange={(e) => setEditAddress(e.target.value)}
-                />
-              </label>
-              <div className="edit-intro">
-                <label htmlFor="user-intro">
-                  Lời giới thiệu{" "}
-                  <textarea
-                    title="intro"
-                    id="user-intro"
-                    value={editIntro}
-                    onChange={(e) => setEditIntro(e.target.value)}
-                  ></textarea>
-                </label>
+          <h2>
+            Chào mừng <span className="user_name">{user.userName}</span> đã quay
+            lại
+          </h2>
+
+          <div className="item-info">
+            <div className="item-img">
+              <img src={user.avatar} alt="Avatar" title="Avatar Use" />
+            </div>
+
+            <div className="item-infomation">
+              <div className="item">
+                <p>Họ và Tên :</p>
+                {edit ? (
+                  <input
+                    type="text"
+                    id="full-name"
+                    value={editName}
+                    onChange={(e) => setEditName(e.target.value)}
+                  />
+                ) : (
+                  <strong>{user.fullName}</strong>
+                )}
               </div>
 
+              <div className="item">
+                <p>Tuổi :</p>
+                {edit ? (
+                  <input
+                    type="number"
+                    id="user-age"
+                    value={editAge}
+                    onChange={(e) => setEditAge(e.target.value)}
+                  />
+                ) : (
+                  <strong>{user.age}</strong>
+                )}
+              </div>
+
+              <div className="item">
+                <p>Nghề nghiệp :</p>
+                {edit ? (
+                  <input
+                    type="text"
+                    id="user-major"
+                    value={editMajor}
+                    onChange={(e) => setEditMajor(e.target.value)}
+                  />
+                ) : (
+                  <strong>{user.major}</strong>
+                )}
+              </div>
+
+              <div className="item">
+                <p>Địa chỉ :</p>
+                {edit ? (
+                  <input
+                    type="text"
+                    id="user-address"
+                    value={editAddress}
+                    onChange={(e) => setEditAddress(e.target.value)}
+                  />
+                ) : (
+                  <strong>{user.address}</strong>
+                )}
+              </div>
+            </div>
+          </div>
+          <>
+            <fieldset className="fieldset">
+              <legend>
+                <i>Lời giới thiệu :</i>
+              </legend>
+              {edit ? (
+                <textarea
+                  title="intro"
+                  id="user-intro"
+                  value={editIntro}
+                  onChange={(e) => setEditIntro(e.target.value)}
+                ></textarea>
+              ) : (
+                <sub>{user.intro}</sub>
+              )}
+            </fieldset>
+            {edit ? (
               <div className="button-user">
                 <button
                   type="button"
@@ -213,56 +237,27 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
                   UPDATE
                 </button>
               </div>
-            </form>
-          ) : (
-            <div>
-              <p>
-                Chào mừng <b>{user.userName}</b> đã đăng nhập
-              </p>
-              <button
-                type="button"
-                className="button-setting"
-                onClick={() => handleEdit(user.id)}
-                title="edit"
-              >
-                edit
-              </button>
-              <div className="item-info">
-                <div className="item-img">
-                  <img src={user.avatar} alt="Avatar" title="Avatar Use" />
-                </div>
-
-                <div>
-                  <p>
-                    Họ và Tên : <strong>{user.fullName}</strong>
-                  </p>
-                  <p>
-                    Tuổi : <strong>{user.age}</strong>
-                  </p>
-                  <p>
-                    Nghề nghiệp : <strong>{user.major}</strong>
-                  </p>
-                  <p>
-                    Địa chỉ : <strong>{user.address}</strong>
-                  </p>
-                  <fieldset className="fieldset">
-                    <legend>
-                      <i>Lời giới thiệu :</i>
-                    </legend>
-                    <sub>{user.intro}</sub>
-                  </fieldset>
-                  <button
-                    type="button"
-                    title="Logout"
-                    className="btn-logout"
-                    onClick={handleLogout}
-                  >
-                    Đăng xuất
-                  </button>
-                </div>
+            ) : (
+              <div className="footer-account">
+                <button
+                  type="button"
+                  title="Logout"
+                  className="btn-logout"
+                  onClick={handleLogout}
+                >
+                  Đăng xuất
+                </button>
+                <button
+                  type="button"
+                  className="button-setting"
+                  onClick={() => handleEdit(user.id)}
+                  title="edit"
+                >
+                  edit
+                </button>
               </div>
-            </div>
-          )}
+            )}
+          </>
         </div>
       ) : (
         <form className="login-form">

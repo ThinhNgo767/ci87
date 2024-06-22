@@ -25,6 +25,8 @@ const Todo = ({ isLoggedIn }) => {
       let infoUser;
       if (userCookie) {
         infoUser = JSON.parse(userCookie);
+      }else{
+        infoUser = []
       }
       setIdUser(infoUser.id);
     };
@@ -73,7 +75,7 @@ const Todo = ({ isLoggedIn }) => {
           .put(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${idUser}`, {
             todoTask: updatedTodos,
           })
-          .then((response) => {
+          .then(() => {
             console.log("Cập nhật nhiệm vụ thành công.");
           })
           .catch((error) => {

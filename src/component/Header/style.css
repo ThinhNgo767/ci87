@@ -78,6 +78,33 @@ button.light--theme {
   border-bottom: 1px solid #dadada;
   top: -4rem;
 }
+/* .navigator li {
+position: relative;
+display: block;
+transition: 0.5s;
+cursor: pointer;
+}
+.navigator li::after{
+  position: absolute;
+  content: "";
+  width: 90%;
+  height: 2px;
+  top: 100%;
+  left: 0;
+  transition: transform 0.5s;
+  background-color: #087ea4;
+  transform-origin: right;
+  transform: scaleX(0);
+
+}
+.navigator li:hover{
+  color: #ffffff;
+}
+.navigator li:hover::after{
+  transform: scaleX(1);
+  transform-origin: left;
+} */
+
 @media only screen and (max-width: 480px) {
   .header {
     gap: 1.5rem;

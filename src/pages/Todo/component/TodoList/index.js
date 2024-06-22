@@ -3,19 +3,31 @@ import "./style.css";
 import ThemeContext from "../../../../contexts/ThemeContext";
 
 import { useContext } from "react";
-import { BsListUl,BsFilter } from "react-icons/bs";
+import { BsListUl, BsFilter } from "react-icons/bs";
 
 const TodoList = ({
   todoCompleted,
   handleDeleteTodo,
-  filterTodos,filter,
-  setFilter,idUser
+  filterTodos,
+  filter,
+  setFilter,
+  idUser,
 }) => {
   const { theme } = useContext(ThemeContext);
-  
+
   const handleChecked = (e) => {
     setFilter(e.target.value);
   };
+
+  const Todos = filterTodos().map((todo) => (
+    <TodoItem
+      key={todo.key}
+      dataTodos={todo}
+      todoCompleted={todoCompleted}
+      handleDeleteTodo={handleDeleteTodo}
+      idUser={idUser}
+    />
+  ));
 
   const classTodoList =
     theme === "light"
@@ -26,9 +38,10 @@ const TodoList = ({
 
   return (
     <div className={classTodoList}>
-      <h4 className="filter-text filter-text--light filter-text--dark"><BsFilter className="filter_icon"/> Filter todo</h4>
+      <h4 className="filter-text filter-text--light filter-text--dark">
+        <BsFilter className="filter_icon" /> Filter todo
+      </h4>
       <div className="filter-task style--light style--dark">
-        
         <label className={classFilter} htmlFor="all">
           <input
             type="radio"
@@ -62,18 +75,12 @@ const TodoList = ({
           />
           Completed
         </label>
-        
       </div>
-      <h4 className="taks-list taks-list--light taks-list--dark"><BsListUl className="filter_icon"/>Todo task</h4>
-      {filterTodos().map((todo) => (
-        <TodoItem
-          key={todo.key}
-          dataTodos={todo}
-          todoCompleted={todoCompleted}
-          handleDeleteTodo={handleDeleteTodo}
-          idUser={idUser}
-        />
-      ))}
+      <h4 className="taks-list taks-list--light taks-list--dark">
+        <BsListUl className="filter_icon" />
+        Todo task
+      </h4>
+      {Todos}
     </div>
   );
 };
