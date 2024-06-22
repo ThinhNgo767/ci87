@@ -25,8 +25,6 @@ const Todo = ({ isLoggedIn }) => {
       let infoUser;
       if (userCookie) {
         infoUser = JSON.parse(userCookie);
-      }else{
-        infoUser = []
       }
       setIdUser(infoUser.id);
     };
@@ -81,7 +79,6 @@ const Todo = ({ isLoggedIn }) => {
           .catch((error) => {
             console.error("Lỗi khi cập nhật nhiệm vụ:", error);
           });
-        
       })
       .catch((error) => {
         console.error("Lỗi khi lấy danh sách người dùng:", error);
@@ -163,7 +160,6 @@ const Todo = ({ isLoggedIn }) => {
       .catch((error) => {
         console.error("Lỗi khi lấy danh sách người dùng:", error);
       });
-
   };
   // filter todo
   const filterTodos = () => {
