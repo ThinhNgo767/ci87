@@ -3,6 +3,8 @@
 }
 .login-form {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   gap: 1.5rem;
 }
@@ -11,11 +13,18 @@
   height: 2rem;
   font-size: 1rem;
   padding-left: 0.25rem;
+  border: 1px solid #087ea4;
+  border-radius: 2px;
+}
+.sign-in input:focus {
+  outline: 1.5px solid #087ea4;
 }
 .sign-in button {
-  width: 15rem;
+  width: 15.6rem;
   height: 2rem;
   font-size: 1rem;
+  border-radius: 2px;
+  text-transform: uppercase;
 }
 .sign-in .user_islogin {
   display: flex;
@@ -150,7 +159,7 @@ button.user-btn-cancel {
 .button-user {
   display: flex;
   justify-content: flex-start;
-  align-items: end;
+  align-items: flex-end;
   gap: 2rem;
   width: 50%;
   padding-top: 2rem;
@@ -158,6 +167,7 @@ button.user-btn-cancel {
 .button-user {
   justify-content: flex-end;
 }
+
 @media only screen and (max-width: 480px) {
   .sign-in .item-info {
     flex-direction: column;
@@ -169,7 +179,7 @@ button.user-btn-cancel {
     height: 15rem;
   }
   .btn-logout {
-    margin-top: 3rem;
+    margin-top: 1rem;
   }
   button.button-setting {
     left: 3rem;
@@ -181,5 +191,26 @@ button.user-btn-cancel {
   }
   .sign-in .user_islogin {
     text-align: center;
+  }
+  span.user_name {
+    font-size: 1.2rem;
+  }
+  .item-img,
+  .item-infomation {
+    width: 100%;
+  }
+  .sign-in .item-infomation .item {
+    justify-content: center;
+  }
+  .sign-in fieldset {
+    width: 20rem;
+  }
+  .sign-in fieldset sub {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+  .footer-account {
+    padding-top: 0;
+    width: 84%;
   }
 }

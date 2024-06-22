@@ -135,7 +135,7 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
       {isLoggedIn ? (
         <div className={classUserLogin}>
           <h2>
-            Chào mừng <span className="user_name">{user.userName}</span> đã quay
+            Chào mừng <span className="user_name">{user.fullName}</span> đã quay
             lại
           </h2>
 
@@ -263,6 +263,7 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
         <form className="login-form">
           <input
             type="text"
+            className="login-name"
             placeholder="Tên đăng nhập"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -270,6 +271,7 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
           />
           <input
             type="password"
+            className="login-password"
             placeholder="Mật khẩu"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
