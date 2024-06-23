@@ -3,6 +3,7 @@ import axios from "axios";
 import ThemeContext from "../../contexts/ThemeContext";
 import Cookies from "js-cookie";
 import { NavLink } from "react-router-dom";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 import "./style.css";
 
@@ -19,6 +20,7 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [edit, setEdit] = useState(false);
+  const [hide, setHide] = useState(false);
 
   //
   const [editAvatar, setEditAvatar] = useState("");
@@ -130,7 +132,10 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
       handleLogin();
     }
   };
-
+  const handleHide = (e) => {
+    e.preventDefault();
+    setHide((prv) => !prv);
+  };
   const classUserLogin =
     theme === "light"
       ? "user_islogin user_islogin--light"
@@ -269,25 +274,44 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
         <>
           <h1 className="login-title">Login</h1>
           <form className="login-form">
-            <input
-              type="text"
-              className="login-name"
-              placeholder="Tên đăng nhập"
-              value={username}
-              onChange={(e) => setUsername(e.target.value.toLowerCase())}
-              onKeyDown={handleKeyPress}
-            />
-            <input
-              type="password"
-              className="login-password"
-              placeholder="Mật khẩu"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyDown={handleKeyPress}
-              autoComplete="autoComplete"
-            />
+            <div className="item-login">
+              <label htmlFor="login-name">UserName</label>
+              <input
+                type="text"
+                id="login-name"
+                className="login-name"
+                value={username}
+                onChange={(e) => setUsername(e.target.value.toLowerCase())}
+                onKeyDown={handleKeyPress}
+              />
+            </div>
+
+            <div className="item-login item-login-pass">
+              <label htmlFor="login-pass">password</label>
+              <input
+                type={hide ? "text" : "password"}
+                id="login-pass"
+                className="login-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={handleKeyPress}
+                autoComplete="autoComplete"
+              />
+              <div className="box-button-hide">
+                {hide ? (
+                  <button className="hide-pass" onClick={handleHide}>
+                    <AiFillEye />
+                  </button>
+                ) : (
+                  <button className="hide-pass" onClick={handleHide}>
+                    <AiFillEyeInvisible />
+                  </button>
+                )}
+              </div>
+            </div>
+
             <p>
-              Bạn chưa có tài khoản{" "}
+              Bạn chưa có tài khoản ?{" "}
               <NavLink to="/sign-up" className="dang-ky">
                 Đăng Ký
               </NavLink>

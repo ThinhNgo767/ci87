@@ -17,6 +17,17 @@ h1.login-title {
   flex-direction: column;
   gap: 1.5rem;
 }
+.login-form .item-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.login-form .item-login label {
+  font-weight: 600;
+  color: #087ea4;
+  padding-bottom: 0.5rem;
+  text-transform: uppercase;
+}
 .sign-in input {
   width: 15rem;
   height: 2rem;
@@ -183,6 +194,21 @@ a.dang-ky {
 }
 a.dang-ky:hover {
   color: #4b627a;
+}
+button.hide-pass {
+  max-width: fit-content;
+  max-height: fit-content;
+  background-color: transparent;
+  color: #087ea4;
+  font-size: 1.2rem;
+}
+.item-login-pass {
+  position: relative;
+}
+.box-button-hide {
+  position: absolute;
+  top: 2rem;
+  left: 13rem;
 }
 @media only screen and (max-width: 480px) {
   .sign-in {
