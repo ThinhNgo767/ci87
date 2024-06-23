@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Todo from "./pages/Todo";
 import About from "./pages/About";
 import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 import Error from "./pages/Error";
 
 import ThemeContext from "./contexts/ThemeContext";
@@ -33,7 +34,7 @@ function App() {
   return (
     <div className={appClassName}>
       <ThemeContext.Provider value={{ theme: theme, setTheme: setTheme }}>
-        <Header isLoggedIn={isLoggedIn} />
+        <Header isLoggedIn={isLoggedIn} onLoggout={handleLoggout} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/todo" element={<Todo isLoggedIn={isLoggedIn} />} />
@@ -48,6 +49,7 @@ function App() {
               />
             }
           />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route path="*" element={<Error />} />
         </Routes>
         <Footer />

@@ -4,8 +4,9 @@ import "./style.css";
 import { NavLink } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { BsSun, BsMoon } from "react-icons/bs";
+import Cookies from "js-cookie";
 
-const Header = ({isLoggedIn}) => {
+const Header = ({ isLoggedIn, onLoggout }) => {
   const { theme, setTheme } = useContext(ThemeContext);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -27,6 +28,14 @@ const Header = ({isLoggedIn}) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleLogout = () => {
+    // Xóa dữ liệu người dùng và đăng xuất
+    Cookies.remove("token");
+    Cookies.remove("user");
+    onLoggout();
+    // setUserData(null);
+  };
 
   const activeClass = (params) => {
     return theme === "light"
@@ -61,16 +70,30 @@ const Header = ({isLoggedIn}) => {
         </li>
         <li>
           <NavLink to="/about" className={activeClass}>
-          About
+            About
           </NavLink>
         </li>
         <li>
-          {!isLoggedIn ? <NavLink to="/sign-in" className={activeClass}>
-            Login
-          </NavLink> : <NavLink to="/sign-in" className={activeClass}>
-            Profile
-          </NavLink>}
-          
+          {!isLoggedIn ? (
+            <NavLink to="/sign-in" className={activeClass}>
+              Login
+            </NavLink>
+          ) : (
+            <NavLink to="/sign-in" className={activeClass}>
+              Profile
+            </NavLink>
+          )}
+        </li>
+        <li>
+          {!isLoggedIn ? (
+            <NavLink to="/sign-up" className={activeClass}>
+              Register
+            </NavLink>
+          ) : (
+            <NavLink to="/" className={activeClass} onClick={handleLogout}>
+              Logout
+            </NavLink>
+          )}
         </li>
       </ul>
       {theme === "light" ? (

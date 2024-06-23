@@ -42,8 +42,6 @@ const Todo = ({ isLoggedIn }) => {
         const userLogin = response.data.find((user) => user.id === id);
         if (userLogin) {
           setTodos(userLogin.todoTask);
-        } else {
-          setTodos([]);
         }
       } catch (error) {
         console.error(error);

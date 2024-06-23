@@ -51,8 +51,6 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo, idUser }) => {
           return todo;
         });
 
-        
-
         axios
           .put(`https://650d41c5a8b42265ec2be909.mockapi.io/user/${idUser}`, {
             todoTask: updatedTodos,
@@ -67,7 +65,6 @@ const TodoItem = ({ dataTodos, todoCompleted, handleDeleteTodo, idUser }) => {
       .catch((error) => {
         console.error("Lỗi khi lấy danh sách người dùng:", error);
       });
-
   };
 
   const increase = () => {

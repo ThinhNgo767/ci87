@@ -1,17 +1,18 @@
-.todo__page{
-    min-width: 20rem;
-    padding: 3rem 5rem;
-    border-radius: 5px;
+.todo__page {
+  min-width: 20rem;
+  padding: 3rem 5rem;
+  border-radius: 5px;
 }
-.todo__page-light{
-    background-color: #f3f4f6;
-   
+.todo__page-light {
+  background-color: #f3f4f6;
 }
-.todo__page-dark{
-    background-color: #444b59;
+.todo__page-dark {
+  background-color: #444b59;
 }
 @media only screen and (max-width: 480px) {
-    .todo__page{
-        padding: 3rem 2.2rem;
-    } 
+  .todo__page {
+    padding: 3rem 2.2rem;
+    min-height: 80vh;
+    min-width: 80vw;
+  }
 }

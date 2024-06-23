@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import ThemeContext from "../../contexts/ThemeContext";
 import Cookies from "js-cookie";
+import { NavLink } from "react-router-dom";
 
 import "./style.css";
 
@@ -33,31 +34,36 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
     const expirationDateToken = new Date();
     expirationDateToken.setTime(expirationDateToken.getTime() + 15 * 60 * 1000);
     const options = { expires: expirationDateToken };
-    try {
-      // Gửi yêu cầu đăng nhập lên API và nhận dữ liệu người dùng
-      const response = await axios.get(
-        "https://650d41c5a8b42265ec2be909.mockapi.io/user"
-      );
-      const users = response.data;
-      const isUser = users.find((user) => {
-        return user.userName === username && user.password === password;
-      });
+    if (username === "" || password === "") {
+      setError("Không được để trống username hoặc password");
+      return;
+    } else {
+      try {
+        // Gửi yêu cầu đăng nhập lên API và nhận dữ liệu người dùng
+        const response = await axios.get(
+          "https://650d41c5a8b42265ec2be909.mockapi.io/user"
+        );
+        const users = response.data;
+        const isUser = users.find((user) => {
+          return user.userName === username && user.password === password;
+        });
 
-      if (isUser) {
-        Cookies.set("token", isUser.userName, options);
-        Cookies.set("user", JSON.stringify(isUser));
-        // setUserData(isUser);
-        setUsername("");
-        setPassword("");
-        onLoggedIn();
-      } else {
-        // Đăng nhập thất bại
-        setError("sai username or password");
+        if (isUser) {
+          Cookies.set("token", isUser.userName, options);
+          Cookies.set("user", JSON.stringify(isUser));
+          // setUserData(isUser);
+          setUsername("");
+          setPassword("");
+          onLoggedIn();
+        } else {
+          // Đăng nhập thất bại
+          setError("Sai username hoặc password");
+        }
+
+        // Xử lý phản hồi từ API
+      } catch (error) {
+        setError("Đã xảy ra lỗi khi gửi yêu cầu");
       }
-
-      // Xử lý phản hồi từ API
-    } catch (error) {
-      setError("Đã xảy ra lỗi khi gửi yêu cầu");
     }
   };
 
@@ -134,7 +140,7 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
     <div className="sign-in">
       {isLoggedIn ? (
         <div className={classUserLogin}>
-          <h2>
+          <h2 className="welcome">
             Chào mừng <span className="user_name">{user.fullName}</span> đã quay
             lại
           </h2>
@@ -260,29 +266,38 @@ const SignIn = ({ onLoggedIn, onLoggout, isLoggedIn }) => {
           </>
         </div>
       ) : (
-        <form className="login-form">
-          <input
-            type="text"
-            className="login-name"
-            placeholder="Tên đăng nhập"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            onKeyDown={handleKeyPress}
-          />
-          <input
-            type="password"
-            className="login-password"
-            placeholder="Mật khẩu"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onKeyDown={handleKeyPress}
-            autoComplete="autoComplete"
-          />
-          <button type="button" title="Login" onClick={handleLogin}>
-            Đăng nhập
-          </button>
-          {error && <p>{error}</p>}
-        </form>
+        <>
+          <h1 className="login-title">Login</h1>
+          <form className="login-form">
+            <input
+              type="text"
+              className="login-name"
+              placeholder="Tên đăng nhập"
+              value={username}
+              onChange={(e) => setUsername(e.target.value.toLowerCase())}
+              onKeyDown={handleKeyPress}
+            />
+            <input
+              type="password"
+              className="login-password"
+              placeholder="Mật khẩu"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={handleKeyPress}
+              autoComplete="autoComplete"
+            />
+            <p>
+              Bạn chưa có tài khoản{" "}
+              <NavLink to="/sign-up" className="dang-ky">
+                Đăng Ký
+              </NavLink>
+            </p>
+            <button type="button" title="Login" onClick={handleLogin}>
+              Đăng nhập
+            </button>
+            {error && <p>{error}</p>}
+          </form>
+        </>
       )}
     </div>
   );
